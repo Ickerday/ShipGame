@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyvklrcexk8k"]
+
+[ext_resource type="PackedScene" uid="uid://bb41m2pfbydla" path="res://src/godot-src/GameWorld/Components/VisibilityComponent/VisibilityComponent.tscn" id="1_4owvk"]
+[ext_resource type="PackedScene" uid="uid://dg6f5htrtkols" path="res://src/godot-src/GameWorld/Components/MovementComponent/MovementComponent.tscn" id="1_bhsik"]
+[ext_resource type="Texture2D" uid="uid://d0wkfedo21nhy" path="res://icon.svg" id="2_ioxpi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0rh1"]
+radius = 16.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 3
+
+[node name="VisibilityComponent" parent="." instance=ExtResource("1_4owvk")]
+
+[node name="MovementComponent" parent="." instance=ExtResource("1_bhsik")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v0rh1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ioxpi")

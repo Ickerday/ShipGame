@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2y0u86djwga2"]
+
+[ext_resource type="Script" path="res://src/godot-src/UserGameInterface/UserInterface.gd" id="1_4kdl8"]
+[ext_resource type="PackedScene" uid="uid://cu5suy5vgbf7v" path="res://src/godot-src/UserGameInterface/Map/MapContainer.tscn" id="1_ttj7j"]
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4kdl8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Map" parent="VBoxContainer" instance=ExtResource("1_ttj7j")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="PlayerActions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeedUpButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+layout_mode = 2
+text = "Speed up"
+
+[node name="SpeedDownButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+layout_mode = 2
+text = "Slow down
+"
+
+[node name="RotateRightButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+layout_mode = 2
+text = "Rotate Right
+"
+
+[node name="RotateLeftButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+layout_mode = 2
+text = "Rotate Left"
+
+[node name="StopRotating" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+layout_mode = 2
+text = "Stop Rotating"
+
+[node name="FullStop" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+layout_mode = 2
+text = "FullStop"
+
+[node name="PlayerData" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Velocity" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "Velocity
+"
+
+[node name="Rotation" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "Rotation"
+
+[node name="DesiredRotationChange" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "Desired Rotation Change"
+
+[node name="Speed" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "Desired Speed"
+
+[node name="HP" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "data1"
+
+[node name="Armor" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "data2"
+
+[node name="Loudness" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
+layout_mode = 2
+text = "data3"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/SpeedUpButton" to="." method="increment_speed" binds= [0.5]]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/SpeedDownButton" to="." method="increment_speed" binds= [-0.5]]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/RotateRightButton" to="." method="increment_rotation" binds= [0.1]]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/RotateLeftButton" to="." method="increment_rotation" binds= [-0.1]]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/StopRotating" to="." method="set_desired_rotation" binds= [0.0]]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/FullStop" to="." method="set_desired_speed" binds= [0.0]]

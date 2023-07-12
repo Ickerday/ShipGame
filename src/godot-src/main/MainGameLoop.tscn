@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi8upsg8be40o"]
+
+[ext_resource type="PackedScene" uid="uid://bfhqxtlvo2f3h" path="res://src/godot-src/GameWorld/GameWorld.tscn" id="1_6wqpv"]
+[ext_resource type="Script" path="res://src/godot-src/main/MainGameLoop.gd" id="1_jmdxl"]
+[ext_resource type="PackedScene" uid="uid://d2y0u86djwga2" path="res://src/godot-src/UserGameInterface/UserInterface.tscn" id="2_f23p2"]
+
+[node name="MainGameLoop" type="Node"]
+editor_description = "A manager to glue all of our game logic."
+script = ExtResource("1_jmdxl")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="GameWorld" parent="SubViewport" instance=ExtResource("1_6wqpv")]
+editor_description = "Actual game loop"
+
+[node name="GameWorldHandler" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" parent="CanvasLayer" instance=ExtResource("2_f23p2")]

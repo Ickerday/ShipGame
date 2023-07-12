@@ -10,6 +10,19 @@ config_version=5
 
 [application]
 
-config/name="ShipGame"
+config/name="Supership"
+run/main_scene="res://src/godot-src/menu/main-menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://assets/icon.svg"
+config/icon="res://icon.svg"
+
+[autoload]
+
+InputMediator="*res://src/godot-src/GameWorld/Managers/InputMediator.tscn"
+
+[layer_names]
+
+2d_physics/layer_1="Collisions"
+2d_physics/layer_2="Vision"
+2d_physics/layer_3="Sound"
+2d_physics/layer_4="PlayerVision"
+2d_physics/layer_5="PlayerSound"
