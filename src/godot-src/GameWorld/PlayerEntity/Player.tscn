@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dg6f5htrtkols" path="res://src/godot-src/GameWorld/Components/MovementComponent/MovementComponent.tscn" id="1_3ue71"]
 [ext_resource type="PackedScene" uid="uid://c1d1bav7mnwmw" path="res://src/godot-src/GameWorld/PlayerEntity/PlayerVisualSensor.tscn" id="1_hujpf"]
-[ext_resource type="Texture2D" uid="uid://d0wkfedo21nhy" path="res://icon.svg" id="2_tu3y5"]
+[ext_resource type="Texture2D" uid="uid://dpjaihg6rvgij" path="res://assets/yacht1.png" id="3_0pr2r"]
 
 [sub_resource type="GDScript" id="GDScript_ca72f"]
 script/source = "extends CharacterBody2D
@@ -59,4 +59,6 @@ rotation_speed = 0.5
 [node name="PlayerVisualSensor" parent="." instance=ExtResource("1_hujpf")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_tu3y5")
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_0pr2r")

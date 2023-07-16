@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bb41m2pfbydla" path="res://src/godot-src/GameWorld/Components/VisibilityComponent/VisibilityComponent.tscn" id="1_4owvk"]
 [ext_resource type="PackedScene" uid="uid://dg6f5htrtkols" path="res://src/godot-src/GameWorld/Components/MovementComponent/MovementComponent.tscn" id="1_bhsik"]
-[ext_resource type="Texture2D" uid="uid://d0wkfedo21nhy" path="res://icon.svg" id="2_ioxpi"]
+[ext_resource type="Texture2D" uid="uid://dpjaihg6rvgij" path="res://assets/yacht1.png" id="3_0jxnd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v0rh1"]
 radius = 16.0
@@ -18,4 +18,6 @@ collision_layer = 3
 shape = SubResource("CircleShape2D_v0rh1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ioxpi")
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_0jxnd")
