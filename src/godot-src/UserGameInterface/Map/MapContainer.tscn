@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://src/godot-src/UserGameInterface/Map/MapContainer.gd" id="1_kbfql"]
 
 [node name="MapContainer" type="BoxContainer"]
-offset_right = 512.0
-offset_bottom = 512.0
 alignment = 1
 script = ExtResource("1_kbfql")
+camera_speed = 2.0
 
 [node name="Window" type="SubViewportContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 mouse_default_cursor_shape = 3
 stretch = true
 
@@ -18,9 +18,9 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
+size = Vector2i(2, 2)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="Window/SubViewport"]
-process_callback = 0
 position_smoothing_enabled = true

@@ -9,22 +9,22 @@ script = ExtResource("1_nxlrt")
 
 [node name="Entities" type="Node2D" parent="."]
 
-[node name="Player" parent="Entities" instance=ExtResource("2_iyd6v")]
-modulate = Color(0, 1, 0, 1)
-position = Vector2(93, 100)
-
-[node name="Enemy" parent="." instance=ExtResource("3_tp8ks")]
+[node name="Enemy" parent="Entities" instance=ExtResource("3_tp8ks")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(94, -177)
 
-[node name="Enemy2" parent="." instance=ExtResource("3_tp8ks")]
+[node name="Enemy2" parent="Entities" instance=ExtResource("3_tp8ks")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(19, 204)
 
-[node name="Enemy3" parent="." instance=ExtResource("3_tp8ks")]
+[node name="Enemy3" parent="Entities" instance=ExtResource("3_tp8ks")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(319, 97)
 
-[node name="Enemy4" parent="." instance=ExtResource("3_tp8ks")]
+[node name="Enemy4" parent="Entities" instance=ExtResource("3_tp8ks")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(-124, 97)
+position = Vector2(-471, -369)
+
+[node name="Enemy2" parent="Entities" instance=ExtResource("3_tp8ks")]
+position = Vector2(603, -233)

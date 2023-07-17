@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1pr85qxitfqk"]
+[gd_scene load_steps=7 format=3 uid="uid://d1pr85qxitfqk"]
 
 [ext_resource type="PackedScene" uid="uid://dg6f5htrtkols" path="res://src/godot-src/GameWorld/Components/MovementComponent/MovementComponent.tscn" id="1_3ue71"]
+[ext_resource type="PackedScene" uid="uid://biqdy1dg208l7" path="res://src/godot-src/GameWorld/Components/InventoryComponent/InventoryComponent.tscn" id="1_8gjvf"]
 [ext_resource type="PackedScene" uid="uid://c1d1bav7mnwmw" path="res://src/godot-src/GameWorld/PlayerEntity/PlayerVisualSensor.tscn" id="1_hujpf"]
 [ext_resource type="Texture2D" uid="uid://dpjaihg6rvgij" path="res://assets/yacht1.png" id="3_0pr2r"]
 
@@ -21,7 +22,7 @@ func _ready():
 
 func _physics_process(_delta: float):
 	pass
-	
+
 
 ###############################################################################
 # Public functions                                                            #
@@ -47,6 +48,8 @@ radius = 32.0
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 script = SubResource("GDScript_ca72f")
+
+[node name="InventoryComponent" parent="." instance=ExtResource("1_8gjvf")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_crn4l")

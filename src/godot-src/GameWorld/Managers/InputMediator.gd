@@ -35,7 +35,7 @@ func connect_interface_to_player_ship(interface):
 	interface.desired_speed_changed.connect(movement_component.set_desired_speed)
 	interface.desired_rotation_changed.connect(movement_component.set_desired_rotation)
 	movement_component.body_moved.connect(interface.update_label.bind("velocity"))
-	
+
 
 ###############################################################################
 # Private functions                                                           #
