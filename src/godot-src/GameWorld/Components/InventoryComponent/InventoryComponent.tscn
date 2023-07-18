@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://biqdy1dg208l7"]
+[gd_scene load_steps=2 format=3 uid="uid://biqdy1dg208l7"]
+
+[ext_resource type="Script" path="res://src/godot-src/GameWorld/Components/InventoryComponent/inventory_component.gd" id="1_tu6ko"]
 
 [node name="InventoryComponent" type="Node"]
+script = ExtResource("1_tu6ko")

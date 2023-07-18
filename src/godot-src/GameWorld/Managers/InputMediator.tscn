@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dcry0qxcwl04s"]
 
-[ext_resource type="Script" path="res://src/godot-src/GameWorld/Managers/InputMediator.gd" id="1_lxgtv"]
+[ext_resource type="Script" path="res://src/godot-src/GameWorld/Managers/input_mediator.gd" id="1_lxgtv"]
 
 [node name="InputManager" type="Node"]
 script = ExtResource("1_lxgtv")

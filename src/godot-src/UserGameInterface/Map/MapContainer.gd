@@ -25,7 +25,7 @@ var track_player_mode: bool = false
 func _ready():
 	await get_tree().process_frame
 	viewport.world_2d = InputMediator.world2D
-	player_ref = weakref(InputMediator.player)
+	player_ref = InputMediator.player
 
 
 func _physics_process(delta):
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	if track_player_mode:
 		var player: CharacterBody2D = player_ref.get_ref()
 		if player:
-			camera.position = player.global_position
+			requested_camera_movement = player.global_position - camera.global_position
 
 
 func _process(delta):
@@ -46,14 +46,17 @@ func _process(delta):
 	camera.zoom = lerp(camera.zoom, Vector2(requested_camera_zoom, requested_camera_zoom), min(camera_zoom_speed * delta, 1.0))
 
 
-func _input(event):
-	if event is InputEventMouseMotion and event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
+func _gui_input(event):
+	if event is InputEventMouseMotion and event.button_mask == MOUSE_BUTTON_MASK_RIGHT and !track_player_mode:
 		requested_camera_movement += event.relative * (max_zoom - requested_camera_zoom + default_zoom_speed)
+		get_viewport().set_input_as_handled()
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			requested_camera_zoom = max(requested_camera_zoom - camera_zoom_increment, min_zoom)
+			get_viewport().set_input_as_handled()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			requested_camera_zoom = min(requested_camera_zoom + camera_zoom_increment, max_zoom)
+			get_viewport().set_input_as_handled()
 
 
 ###############################################################################
