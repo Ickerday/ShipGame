@@ -49,3 +49,4 @@ func _check_for_actions():
 	var desired_rotation_change: float = 0.1 * (int(Input.is_action_just_pressed("turn_right")) - int(Input.is_action_just_pressed("turn_left")))
 	if !is_zero_approx(desired_rotation_change):
 		new_desired_rotation.emit(desired_rotation_change, false)
+

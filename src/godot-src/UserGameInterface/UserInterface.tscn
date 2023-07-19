@@ -15,7 +15,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 script = ExtResource("1_4kdl8")
-metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -33,18 +32,17 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+mouse_filter = 1
 
 [node name="BottomPanel" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_occkt")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RotationSlider" parent="HBoxContainer/VBoxContainer/BottomPanel/HBoxContainer/RotationControl/MarginContainer/VBoxContainer" index="1"]
-value = 0.5
-
 [node name="ContextBoard" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="HBoxContainer/ContextBoard"]
 layout_mode = 1
@@ -55,6 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
+mouse_filter = 1
 
 [node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
 visible = false

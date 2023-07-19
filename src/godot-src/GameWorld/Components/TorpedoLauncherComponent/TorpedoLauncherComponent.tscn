@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://68u4fmvsowcu"]
+
+[ext_resource type="Script" path="res://src/godot-src/GameWorld/Components/TorpedoLauncherComponent/torpedo_launcher_component.gd" id="1_4w6tp"]
+
+[node name="TorpedoLauncherComponent" type="Node2D"]
+script = ExtResource("1_4w6tp")
