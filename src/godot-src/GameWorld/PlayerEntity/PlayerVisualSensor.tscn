@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1d1bav7mnwmw"]
 
-[ext_resource type="Script" path="res://src/godot-src/GameWorld/PlayerEntity/PlayerVisualSensor.gd" id="1_m8ktn"]
+[ext_resource type="Script" path="res://src/godot-src/GameWorld/PlayerEntity/player_visual_sensor.gd" id="1_m8ktn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_akg1k"]
 radius = 250.0

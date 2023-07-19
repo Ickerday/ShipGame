@@ -1,19 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2y0u86djwga2"]
+[gd_scene load_steps=5 format=3 uid="uid://d2y0u86djwga2"]
 
 [ext_resource type="Script" path="res://src/godot-src/UserGameInterface/UserInterface.gd" id="1_4kdl8"]
 [ext_resource type="PackedScene" uid="uid://cu5suy5vgbf7v" path="res://src/godot-src/UserGameInterface/Map/MapContainer.tscn" id="1_ttj7j"]
-[ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/ui_time_scale_pointer.png" id="3_jkwrv"]
-[ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/ui_time_scale_pointer_hover.png" id="3_n5upj"]
-[ext_resource type="Texture2D" uid="uid://bsw5p6qe2dq4l" path="res://assets/ui_time_scale.png" id="4_5bpgk"]
-[ext_resource type="Texture2D" uid="uid://b0axsqpauc72n" path="res://assets/ui_frame1.png" id="6_4jlpr"]
-[ext_resource type="Texture2D" uid="uid://du14o8pj5dyb5" path="res://assets/ui_frame_fill.png" id="7_o73kv"]
-[ext_resource type="Texture2D" uid="uid://b67pj4ho3womt" path="res://assets/ui_steering_wheel.png" id="8_8vb0r"]
-[ext_resource type="Texture2D" uid="uid://ep8sggijkm7q" path="res://assets/ui_steering_pointer.png" id="9_swiw3"]
-[ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/ui_camera_center_button.png" id="10_yup5k"]
-[ext_resource type="Texture2D" uid="uid://c5epbvotjkark" path="res://assets/ui_fader_1.png" id="11_mg3wa"]
-[ext_resource type="Texture2D" uid="uid://dniojriyqs4hr" path="res://assets/ui_fader_1_dial.png" id="12_svpr6"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_r1kbm"]
+[ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/godot-src/UserGameInterface/bottom_panel/BottomPanel.tscn" id="3_occkt"]
+[ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/godot-src/UserGameInterface/ContextMenuRight/MissileContextMenu/MissileContextMenu.tscn" id="4_7y6k8"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -22,270 +12,54 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
 script = ExtResource("1_4kdl8")
-
-[node name="UI v1" type="Control" parent="."]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 592.0
-offset_top = 744.0
-offset_right = 592.0
-offset_bottom = 744.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.7, 0.7)
 metadata/_edit_group_ = true
 
-[node name="Bottom Frame" type="Control" parent="UI v1"]
-layout_mode = 2
-anchors_preset = 0
-grow_horizontal = 0
-grow_vertical = 0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="UiFrame1" type="Sprite2D" parent="UI v1/Bottom Frame"]
-texture = ExtResource("6_4jlpr")
-
-[node name="UiFrameFill" type="Sprite2D" parent="UI v1/Bottom Frame"]
-modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(32, -32)
-texture = ExtResource("7_o73kv")
-
-[node name="UiCameraCenterButton" type="Sprite2D" parent="UI v1"]
-position = Vector2(0, -132)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("10_yup5k")
-
-[node name="Time Scale" type="Control" parent="UI v1"]
-layout_mode = 2
-anchors_preset = 0
-offset_top = 144.0
-offset_bottom = 144.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.6, 0.6)
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="Time Scale Buttons" type="Control" parent="UI v1/Time Scale"]
-anchors_preset = 0
-
-[node name="0_5x Button" type="TextureButton" parent="UI v1/Time Scale/Time Scale Buttons"]
-layout_mode = 0
-offset_left = -383.333
-offset_top = -125.333
-offset_right = -137.333
-offset_bottom = 106.667
-toggle_mode = true
-button_group = SubResource("ButtonGroup_r1kbm")
-texture_hover = ExtResource("3_n5upj")
-texture_focused = ExtResource("3_jkwrv")
-stretch_mode = 4
-
-[node name="1x Button" type="TextureButton" parent="UI v1/Time Scale/Time Scale Buttons"]
-layout_mode = 0
-offset_left = -263.333
-offset_top = -125.333
-offset_right = -17.3334
-offset_bottom = 106.667
-toggle_mode = true
-button_group = SubResource("ButtonGroup_r1kbm")
-texture_hover = ExtResource("3_n5upj")
-texture_focused = ExtResource("3_jkwrv")
-stretch_mode = 4
-
-[node name="2x Button" type="TextureButton" parent="UI v1/Time Scale/Time Scale Buttons"]
-layout_mode = 0
-offset_left = -151.333
-offset_top = -133.333
-offset_right = 94.6666
-offset_bottom = 98.6667
-toggle_mode = true
-button_group = SubResource("ButtonGroup_r1kbm")
-texture_hover = ExtResource("3_n5upj")
-texture_focused = ExtResource("3_jkwrv")
-stretch_mode = 4
-
-[node name="3x Button" type="TextureButton" parent="UI v1/Time Scale/Time Scale Buttons"]
-layout_mode = 0
-offset_left = -47.3334
-offset_top = -133.333
-offset_right = 198.667
-offset_bottom = 98.6667
-toggle_mode = true
-button_group = SubResource("ButtonGroup_r1kbm")
-texture_hover = ExtResource("3_n5upj")
-texture_focused = ExtResource("3_jkwrv")
-stretch_mode = 4
-
-[node name="4x Button" type="TextureButton" parent="UI v1/Time Scale/Time Scale Buttons"]
-layout_mode = 0
-offset_left = 64.6666
-offset_top = -125.333
-offset_right = 310.667
-offset_bottom = 106.667
-toggle_mode = true
-button_group = SubResource("ButtonGroup_r1kbm")
-texture_hover = ExtResource("3_n5upj")
-texture_focused = ExtResource("3_jkwrv")
-stretch_mode = 4
-
-[node name="5x Button" type="TextureButton" parent="UI v1/Time Scale/Time Scale Buttons"]
-layout_mode = 0
-offset_left = 168.667
-offset_top = -125.333
-offset_right = 414.667
-offset_bottom = 106.667
-toggle_mode = true
-button_group = SubResource("ButtonGroup_r1kbm")
-texture_hover = ExtResource("3_n5upj")
-texture_focused = ExtResource("3_jkwrv")
-stretch_mode = 4
-
-[node name="UiTimeScale" type="Sprite2D" parent="UI v1/Time Scale"]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("4_5bpgk")
-
-[node name="Speed" type="Control" parent="UI v1"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 500.0
-offset_top = 4.0
-offset_right = 500.0
-offset_bottom = 4.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="UiFader1" type="Sprite2D" parent="UI v1/Speed"]
-texture = ExtResource("11_mg3wa")
-metadata/_edit_lock_ = true
-
-[node name="UiFader1Dial" type="Sprite2D" parent="UI v1/Speed"]
-position = Vector2(-5, 350)
-texture = ExtResource("12_svpr6")
-
-[node name="Steering" type="Control" parent="UI v1"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 701.0
-offset_top = 52.0
-offset_right = 701.0
-offset_bottom = 52.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="UiSteeringWheel" type="Sprite2D" parent="UI v1/Steering"]
-texture = ExtResource("8_8vb0r")
-
-[node name="UiSteeringPointer2" type="Sprite2D" parent="UI v1/Steering/UiSteeringWheel"]
-position = Vector2(-15.9998, -160)
-rotation = -3.14159
-scale = Vector2(1, 1)
-texture = ExtResource("9_swiw3")
-metadata/_edit_lock_ = true
-
-[node name="UiSteeringPointer" type="Sprite2D" parent="UI v1/Steering"]
-position = Vector2(2.08165e-12, -380)
-texture = ExtResource("9_swiw3")
-metadata/_edit_lock_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
 
-[node name="Map" parent="VBoxContainer" instance=ExtResource("1_ttj7j")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-metadata/_edit_group_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="PlayerActions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpeedUpButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+[node name="Map" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_ttj7j")]
 layout_mode = 2
-text = "Speed up"
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
-[node name="SpeedDownButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
+[node name="BottomPanel" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_occkt")]
 layout_mode = 2
-text = "Slow down
-"
+size_flags_vertical = 3
 
-[node name="RotateRightButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
-layout_mode = 2
-text = "Rotate Right
-"
+[node name="RotationSlider" parent="HBoxContainer/VBoxContainer/BottomPanel/HBoxContainer/RotationControl/MarginContainer/VBoxContainer" index="1"]
+value = 0.5
 
-[node name="RotateLeftButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
-layout_mode = 2
-text = "Rotate Left"
-
-[node name="StopRotating" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
-layout_mode = 2
-text = "Stop Rotating"
-
-[node name="FullStop" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions"]
-layout_mode = 2
-text = "FullStop"
-
-[node name="PlayerData" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="ContextBoard" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
 
-[node name="Velocity" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "Velocity
-"
+[node name="Panel" type="Panel" parent="HBoxContainer/ContextBoard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
 
-[node name="Rotation" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "Rotation"
+[node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
+visible = false
+layout_mode = 1
 
-[node name="DesiredRotationChange" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "Desired Rotation Change"
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/BottomPanel/HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer/Button" to="HBoxContainer/ContextBoard/MissileContextMenu" method="activate"]
 
-[node name="Speed" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "Desired Speed"
-
-[node name="HP" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "data1"
-
-[node name="Armor" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "data2"
-
-[node name="Loudness" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/PlayerData"]
-layout_mode = 2
-text = "data3"
-
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/SpeedUpButton" to="." method="increment_speed" binds= [0.5]]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/SpeedDownButton" to="." method="increment_speed" binds= [-0.5]]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/RotateRightButton" to="." method="increment_rotation" binds= [0.1]]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/RotateLeftButton" to="." method="increment_rotation" binds= [-0.1]]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/StopRotating" to="." method="set_desired_rotation" binds= [0.0]]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/PlayerActions/FullStop" to="." method="set_desired_speed" binds= [0.0]]
+[editable path="HBoxContainer/VBoxContainer/BottomPanel"]

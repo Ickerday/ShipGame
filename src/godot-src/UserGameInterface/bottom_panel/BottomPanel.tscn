@@ -1,0 +1,482 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2fm08ytym82w"]
+
+[ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/ui_camera_center_button.png" id="1_tojqk"]
+[ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/ui_time_scale_pointer.png" id="2_1ekan"]
+[ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/ui_time_scale_pointer_hover.png" id="3_w08ao"]
+
+[sub_resource type="GDScript" id="GDScript_y7ol1"]
+script/source = "extends VSlider
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	await get_tree().process_frame
+	if not InputMediator.player:
+		return
+
+	var player = InputMediator.player.get_ref()
+	if not player:
+		return
+
+	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+	if not player_movement_component:
+		return
+
+	player_movement_component.desired_speed_changed.connect(set_value)
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_drag_ended(value_changed):
+	if value_changed:
+		InputMediator.new_desired_speed.emit(value, true)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_g7gci"]
+script/source = "extends Label
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	await get_tree().process_frame
+	if not InputMediator.player:
+		return
+
+	var player = InputMediator.player.get_ref()
+	if not player:
+		return
+
+	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+
+	if not player_movement_component:
+		return
+
+	player_movement_component.desired_speed_changed.connect(update_label)
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func update_label(value):
+	text = str(value)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_yis1m"]
+script/source = "extends Button
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_pressed():
+	InputMediator.new_desired_speed.emit(0, true)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_21otb"]
+script/source = "extends VSlider
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	await get_tree().process_frame
+	if not InputMediator.player:
+		return
+
+	var player = InputMediator.player.get_ref()
+	if not player:
+		return
+
+	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+
+	if not player_movement_component:
+		return
+
+	player_movement_component.desired_rotation_changed.connect(set_value)
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_drag_ended(value_changed):
+	if value_changed:
+		InputMediator.new_desired_rotation.emit(value, true)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_dgxqs"]
+script/source = "extends Label
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	await get_tree().process_frame
+	if not InputMediator.player:
+		return
+
+	var player = InputMediator.player.get_ref()
+	if not player:
+		return
+
+	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+
+	if not player_movement_component:
+		return
+
+	player_movement_component.desired_rotation_changed.connect(update_label)
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func update_label(value):
+	text = str(value)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_ggvrq"]
+script/source = "extends Button
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_pressed():
+	InputMediator.new_desired_rotation.emit(0, true)
+	
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[node name="BottomPanel" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ChangeModeButtons" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ChangeModeButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ChangeModeButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ChangeModeButtons/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "missiles"
+
+[node name="Button2" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "cargo"
+
+[node name="Division1" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Control" type="Control" parent="HBoxContainer/Division1"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Division1/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="CenterCameraButton" type="TextureButton" parent="HBoxContainer/Division1/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_tojqk")
+texture_pressed = ExtResource("1_tojqk")
+texture_hover = ExtResource("1_tojqk")
+texture_disabled = ExtResource("1_tojqk")
+texture_focused = ExtResource("1_tojqk")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="HBoxContainer/Division1"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Division1/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TimeScaleButtons" type="HBoxContainer" parent="HBoxContainer/Division1/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeScale1" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_1ekan")
+texture_hover = ExtResource("3_w08ao")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale2" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_1ekan")
+texture_hover = ExtResource("3_w08ao")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale3" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_1ekan")
+texture_hover = ExtResource("3_w08ao")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale4" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_1ekan")
+texture_hover = ExtResource("3_w08ao")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale5" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_1ekan")
+texture_hover = ExtResource("3_w08ao")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale6" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_1ekan")
+texture_hover = ExtResource("3_w08ao")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SpeedControl" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/SpeedControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeedControl"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeedControl/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SPEED"
+
+[node name="SpeedSlider" type="VSlider" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+min_value = -50.0
+max_value = 50.0
+step = 10.0
+tick_count = 10
+ticks_on_borders = true
+script = SubResource("GDScript_y7ol1")
+
+[node name="CurrentDesiredSpeed" type="Label" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+script = SubResource("GDScript_g7gci")
+
+[node name="FullStopButton" type="Button" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Full Stop"
+script = SubResource("GDScript_yis1m")
+
+[node name="RotationControl" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel4" type="Panel" parent="HBoxContainer/RotationControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/RotationControl"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RotationControl/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ROTATION"
+
+[node name="RotationSlider" type="VSlider" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+min_value = -2.5
+max_value = 2.5
+step = 0.1
+tick_count = 10
+ticks_on_borders = true
+script = SubResource("GDScript_21otb")
+
+[node name="CurrentDesiredRotation" type="Label" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+script = SubResource("GDScript_dgxqs")
+
+[node name="FullStopButton" type="Button" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Full Stop"
+script = SubResource("GDScript_ggvrq")
+
+[connection signal="drag_ended" from="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/SpeedSlider" to="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/SpeedSlider" method="_on_drag_ended"]
+[connection signal="pressed" from="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/FullStopButton" to="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/FullStopButton" method="_on_pressed"]
+[connection signal="drag_ended" from="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/RotationSlider" to="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/RotationSlider" method="_on_drag_ended"]
+[connection signal="pressed" from="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/FullStopButton" to="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/FullStopButton" method="_on_pressed"]

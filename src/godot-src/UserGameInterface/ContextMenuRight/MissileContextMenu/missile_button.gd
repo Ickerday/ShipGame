@@ -1,38 +1,32 @@
-extends Node
+extends Control
 
-class_name VisibilityComponent
+class_name MissileButton
 
-var is_spotted := false
+var item: InventoryItem
+@onready var sprite := $HBoxContainer/TextureRect
+@onready var button := $HBoxContainer/Button
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
 
-
 func _ready():
-	if not is_spotted:
-		get_parent().hide()
-
+	item.item_deleted.connect(_on_item_deleted)
+	sprite.texture = item.item_data.inventory_sprite
+	button.text = item.item_data.name
 
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
 
-
-func spot():
-	get_parent().show()
-
-
-func hide():
-	get_parent().hide()
-
-
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################
 
-
+func _on_item_deleted(item: InventoryItem):
+	queue_free()
 
 ###############################################################################
 # Private functions                                                           #
 ###############################################################################
+

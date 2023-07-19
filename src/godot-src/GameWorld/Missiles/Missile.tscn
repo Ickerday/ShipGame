@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bsg35uo5xbokj"]
+
+[node name="Missile" type="CharacterBody2D"]

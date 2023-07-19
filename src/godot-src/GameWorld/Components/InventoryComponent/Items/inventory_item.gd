@@ -1,37 +1,43 @@
-extends Node
+extends Object
 
-class_name VisibilityComponent
+class_name InventoryItem
 
-var is_spotted := false
+# todo: fix naive/blanket implementation
+var item_id: int
+var item_type: ItemType
+var item_data: BaseItemResource
+
+enum ItemType {
+	Loot,
+	Missile
+}
+
+signal item_deleted(item: InventoryItem)
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
 
 
-func _ready():
-	if not is_spotted:
-		get_parent().hide()
+func _init(new_item_data):
+	item_data = new_item_data
+	if item_data is MissileResource:
+		item_type = ItemType.Missile
+	else:
+		item_type = ItemType.Loot
 
 
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
 
-
-func spot():
-	get_parent().show()
-
-
-func hide():
-	get_parent().hide()
-
+func delete():
+	item_deleted.emit(self)
+	call_deferred("free")
 
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################
-
-
 
 ###############################################################################
 # Private functions                                                           #

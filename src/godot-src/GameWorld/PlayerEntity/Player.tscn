@@ -1,27 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1pr85qxitfqk"]
+[gd_scene load_steps=7 format=3 uid="uid://d1pr85qxitfqk"]
 
 [ext_resource type="PackedScene" uid="uid://dg6f5htrtkols" path="res://src/godot-src/GameWorld/Components/MovementComponent/MovementComponent.tscn" id="1_3ue71"]
+[ext_resource type="PackedScene" uid="uid://biqdy1dg208l7" path="res://src/godot-src/GameWorld/Components/InventoryComponent/InventoryComponent.tscn" id="1_8gjvf"]
 [ext_resource type="PackedScene" uid="uid://c1d1bav7mnwmw" path="res://src/godot-src/GameWorld/PlayerEntity/PlayerVisualSensor.tscn" id="1_hujpf"]
 [ext_resource type="Texture2D" uid="uid://dpjaihg6rvgij" path="res://assets/yacht1.png" id="3_0pr2r"]
 
 [sub_resource type="GDScript" id="GDScript_ca72f"]
 script/source = "extends CharacterBody2D
 
-signal player_marker_updated(marker_data)
-
-
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
 
 func _ready():
-	connect_to_map()
 	InputMediator.register_player(self)
-
-
-func _physics_process(_delta: float):
-	pass
-	
 
 ###############################################################################
 # Public functions                                                            #
@@ -30,11 +22,6 @@ func _physics_process(_delta: float):
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################
-
-func connect_to_map() -> void:
-#	var map = get_tree().get_nodes_in_group(\"Map\")[0]
-#	player_marker_updated.connect(map.mark)
-	pass
 
 ###############################################################################
 # Private functions                                                           #
@@ -48,13 +35,15 @@ radius = 32.0
 motion_mode = 1
 script = SubResource("GDScript_ca72f")
 
+[node name="InventoryComponent" parent="." instance=ExtResource("1_8gjvf")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_crn4l")
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_3ue71")]
 max_speed = 50.0
-acceleration = 1.2
-rotation_speed = 0.5
+acceleration = 0.025
+rotation_speed = 0.1
 
 [node name="PlayerVisualSensor" parent="." instance=ExtResource("1_hujpf")]
 
