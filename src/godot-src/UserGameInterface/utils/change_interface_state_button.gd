@@ -1,40 +1,22 @@
-extends Node
+extends Button
 
-class_name VisibilityComponent
-
-var is_spotted := false
+@export var requested_state_change_on_click: GameInputMediator.InterfaceState
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
 
-
 func _ready():
-	if not is_spotted:
-		get_parent().hide()
-
+	if requested_state_change_on_click:
+		pressed.connect(InputMediator.request_interface_state_change.bind(requested_state_change_on_click))
 
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
 
-func get_body_data():
-	return
-
-
-func spot() -> void:
-	get_parent().show()
-
-
-func hide() -> void:
-	get_parent().hide()
-
-
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################
-
-
 
 ###############################################################################
 # Private functions                                                           #

@@ -4,12 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://bkiye01blg88s" path="res://assets/icon.svg" id="1_8jkhg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1akkl"]
-radius = 50.0
+radius = 25.0
 
 [resource]
 script = ExtResource("1_4i6ti")
 max_speed = 160.0
 min_speed = 140.0
+acceleration = 0.025
+range = 500.0
 map_sprite = ExtResource("1_8jkhg")
 inventory_sprite = ExtResource("1_8jkhg")
 tracking_area = SubResource("CircleShape2D_1akkl")

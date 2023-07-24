@@ -3,8 +3,9 @@ extends BaseItemResource
 class_name MissileResource
 
 @export_group("Missile Data")
-@export var max_speed: = 160.0
-@export var min_speed: = 140.0
+@export var max_speed := 160.0
+@export var min_speed := 140.0
+@export var acceleration := 5.0
 @export var range := 250.0
 @export var map_sprite: Texture
 @export var inventory_sprite: Texture

@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfhqxtlvo2f3h"]
+[gd_scene load_steps=5 format=3 uid="uid://bfhqxtlvo2f3h"]
 
 [ext_resource type="Script" path="res://src/godot-src/GameWorld/game_world.gd" id="1_ukcfx"]
+[ext_resource type="PackedScene" uid="uid://bokcnkv17d3sw" path="res://src/godot-src/GameWorld/Managers/MarkersManager/MapEntitiesManager.tscn" id="2_4pvqw"]
 [ext_resource type="PackedScene" uid="uid://d1pr85qxitfqk" path="res://src/godot-src/GameWorld/PlayerEntity/Player.tscn" id="2_awfyj"]
 [ext_resource type="PackedScene" uid="uid://dyvklrcexk8k" path="res://src/godot-src/GameWorld/EnemyEntity/Enemy.tscn" id="3_tp8ks"]
 
-[node name="GameWorld" type="Node2D"]
+[node name="GameWorld" type="Node2D" groups=["GameWorld"]]
 script = ExtResource("1_ukcfx")
+
+[node name="MapEntitiesManager" parent="." instance=ExtResource("2_4pvqw")]
 
 [node name="Entities" type="Node2D" parent="."]
 
