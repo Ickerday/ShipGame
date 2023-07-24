@@ -59,3 +59,4 @@ func _sync_missiles_with_inventory(inventory: InventoryComponent):
 			new_missile.item = item
 			missile_container.add_child(new_missile)
 			new_missile.button.pressed.connect(torpedo_launcher.load_torpedo.bind(item))
+			new_missile.button.pressed.connect(InputMediator.request_interface_state_change.bind(GameInputMediator.InterfaceState.MissileLaunch))

@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2fm08ytym82w"]
+[gd_scene load_steps=11 format=3 uid="uid://b2fm08ytym82w"]
 
+[ext_resource type="Script" path="res://src/godot-src/UserGameInterface/utils/change_interface_state_button.gd" id="1_jtr8d"]
 [ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/ui_camera_center_button.png" id="1_tojqk"]
 [ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/ui_time_scale_pointer.png" id="2_1ekan"]
 [ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/ui_time_scale_pointer_hover.png" id="3_w08ao"]
@@ -258,6 +259,18 @@ text = "missiles"
 [node name="Button2" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "cargo"
+
+[node name="Ruler" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ruler"
+script = ExtResource("1_jtr8d")
+requested_state_change_on_click = 2
+
+[node name="Pen" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pen"
+script = ExtResource("1_jtr8d")
+requested_state_change_on_click = 3
 
 [node name="Division1" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

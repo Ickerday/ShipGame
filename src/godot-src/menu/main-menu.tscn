@@ -55,7 +55,7 @@ text = "Menu lol
 
 [node name="StartTestButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start test level"
+text = "Test 7 (znaczniki przeciwników #1)"
 
 [node name="SettingsButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
