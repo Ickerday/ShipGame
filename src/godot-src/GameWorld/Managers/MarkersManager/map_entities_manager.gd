@@ -49,6 +49,7 @@ func add_new_visual_marker(visibility_component: VisibilityComponent):
 	new_marker.set_up("Some Ship Name", "Cruiser")
 	markers_on_map[entity_id] = new_marker
 
+
 func remove_visual_marker(visibility_component: VisibilityComponent):
 	var entity_id = visibility_component.get_parent().get_instance_id()
 	var marker = markers_on_map.get(entity_id)

@@ -3,6 +3,7 @@ extends Node2D
 class_name PlayerTorpedoLauncher
 
 var torpedo_ref: WeakRef
+var torpedo_scene := preload("res://src/godot-src/GameWorld/Missiles/Missile.tscn")
 
 ###############################################################################
 # Builtin functions                                                           #
@@ -35,13 +36,7 @@ func _draw():
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_mask == MOUSE_BUTTON_LEFT:
-		if !torpedo_ref:
-			return
-		# launch missile
-		if torpedo_ref.get_ref():
-			torpedo_ref.get_ref().delete()
-		torpedo_ref = null
-		queue_redraw()
+		_fire_torpedo()
 
 
 ###############################################################################
@@ -66,3 +61,22 @@ func unload_torpedo(op_args: Variant = null):
 ###############################################################################
 # Private functions                                                           #
 ###############################################################################
+
+
+func _create_and_fire_new_missile(missile: InventoryItem):
+	# todo – maybe use InputMediator to manage this relationship
+	var game_world = get_tree().get_nodes_in_group("GameWorld")
+	if !game_world:
+		return
+	game_world[0].create_new_missile(missile, get_parent(), get_global_mouse_position())
+	missile.delete()
+
+func _fire_torpedo():
+	if !torpedo_ref:
+		return
+	var torpedo = torpedo_ref.get_ref()
+	if !torpedo:
+		unload_torpedo()
+		return
+	_create_and_fire_new_missile(torpedo)
+	unload_torpedo()
