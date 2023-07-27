@@ -40,6 +40,8 @@ func add_new_ruler():
 
 
 func add_new_visual_marker(visibility_component: VisibilityComponent):
+	if !visibility_component.should_be_displayed:
+		return
 	var entity_id = visibility_component.get_parent().get_instance_id()
 	if markers_on_map.get(entity_id):
 		return

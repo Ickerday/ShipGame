@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2y0u86djwga2"]
+[gd_scene load_steps=6 format=3 uid="uid://d2y0u86djwga2"]
 
 [ext_resource type="Script" path="res://src/godot-src/UserGameInterface/UserInterface.gd" id="1_4kdl8"]
 [ext_resource type="PackedScene" uid="uid://cu5suy5vgbf7v" path="res://src/godot-src/UserGameInterface/Map/MapContainer.tscn" id="1_ttj7j"]
 [ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/godot-src/UserGameInterface/bottom_panel/BottomPanel.tscn" id="3_occkt"]
 [ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/godot-src/UserGameInterface/ContextMenuRight/MissileContextMenu/MissileContextMenu.tscn" id="4_7y6k8"]
+[ext_resource type="PackedScene" uid="uid://b68uro2oj27nq" path="res://src/godot-src/UserGameInterface/ContextMenuRight/PlungeContextMenu/PlungecontextMenu.tscn" id="4_rho07"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -54,6 +55,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 mouse_filter = 1
+
+[node name="PlungecontextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_rho07")]
+visible = false
+layout_mode = 1
 
 [node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
 visible = false

@@ -14,7 +14,13 @@ var current_interface_state := InterfaceState.FreeLook
 signal new_desired_speed(new_speed: Vector2, hard_set: bool)
 signal new_desired_rotation(new_rotation: Vector2, hard_set: bool)
 
+signal interface_state_change_requested(new_state: InterfaceState)
 signal interface_state_changed(new_state: InterfaceState)
+
+signal entity_destroyed(entity: Variant)
+
+signal pillage_the_inventory(inventory: InventoryComponent)
+signal stop_the_plunge
 
 enum InterfaceState {
 	FreeLook,
@@ -28,7 +34,7 @@ enum InterfaceState {
 ###############################################################################
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_check_for_actions()
 
 
@@ -38,7 +44,12 @@ func _physics_process(delta):
 
 
 func request_interface_state_change(new_state: InterfaceState):
-	interface_state_changed.emit(new_state)
+	if new_state != current_interface_state:
+		# "exit"
+		interface_state_change_requested.emit(new_state)
+		current_interface_state = new_state
+		# "enter"
+		interface_state_changed.emit(new_state)
 
 
 func register_world(world):

@@ -1,5 +1,7 @@
 extends Node
 
+# todo – maybe it would be better to use object/refcounted instead?
+
 class_name InventoryComponent
 
 @onready var items: Array[InventoryItem] = []
@@ -10,14 +12,7 @@ class_name InventoryComponent
 ###############################################################################
 
 func _ready():
-	var debug_items = [
-		InventoryItem.new(load("res://data/items/missiles/SimpleTorpedo.tres")),
-		InventoryItem.new(load("res://data/items/missiles/SimpleTorpedo.tres")),
-		InventoryItem.new(load("res://data/items/missiles/SimpleTorpedo.tres")),
-		InventoryItem.new(load("res://data/items/missiles/SimpleTorpedo.tres"))]
-	for item in debug_items:
-		add_item_to_inventory(item)
-
+	tree_exiting.connect(clear)
 
 ###############################################################################
 # Public functions                                                            #
@@ -26,6 +21,18 @@ func _ready():
 func add_item_to_inventory(item: InventoryItem):
 	item.item_deleted.connect(_remove_dead_item_from_inventory)
 	items.append(item)
+
+
+func transfer_to_other_inventory(other: InventoryComponent):
+	for _i in items.size():
+		var item = items.pop_back()
+		other.add_item_to_inventory(item)
+
+
+func clear():
+	for _i in items.size():
+		var item: InventoryItem = items.pop_back()
+		item.delete()
 
 ###############################################################################
 # Connections                                                                 #

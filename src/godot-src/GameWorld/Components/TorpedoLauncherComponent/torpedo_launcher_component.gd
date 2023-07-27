@@ -11,15 +11,13 @@ var torpedo_scene := preload("res://src/godot-src/GameWorld/Missiles/Missile.tsc
 
 
 func _ready():
-	InputMediator.interface_state_changed.connect(unload_torpedo)
+	InputMediator.interface_state_change_requested.connect(unload_torpedo)
 
 
-func _process(delta):
+func _process(_delta):
 	if !torpedo_ref:
 		return
-	var torpedo = torpedo_ref.get_ref()
-	if torpedo_ref.get_ref():
-		queue_redraw()
+	queue_redraw()
 
 
 func _draw():
@@ -28,9 +26,9 @@ func _draw():
 	var torpedo: InventoryItem = torpedo_ref.get_ref()
 	if !torpedo:
 		return
-	draw_arc(Vector2.ZERO, torpedo.item_data.range, 0, TAU, 64, Color.RED, 5.0, true)
+	draw_arc(Vector2.ZERO, torpedo.item_data.missile_range, 0, TAU, 64, Color.RED, 5.0, true)
 	var mouse_position = get_local_mouse_position()
-	if mouse_position.length() <= torpedo.item_data.range:
+	if mouse_position.length() <= torpedo.item_data.missile_range:
 		draw_line(Vector2.ZERO, mouse_position, Color.WHITE, 4.0, true)
 
 
@@ -70,6 +68,7 @@ func _create_and_fire_new_missile(missile: InventoryItem):
 		return
 	game_world[0].create_new_missile(missile, get_parent(), get_global_mouse_position())
 	missile.delete()
+
 
 func _fire_torpedo():
 	if !torpedo_ref:

@@ -28,7 +28,7 @@ func _ready():
 #	viewport.handle_input_locally = true
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_space"):
 		track_player_mode = not track_player_mode
 	if track_player_mode:
