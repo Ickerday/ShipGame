@@ -67,6 +67,7 @@ turn_right={
 2d_physics/layer_4="PlayerVision"
 2d_physics/layer_5="PlayerSound"
 2d_physics/layer_6="InterfaceElements"
+2d_physics/layer_7="Interactable"
 
 [rendering]
 
