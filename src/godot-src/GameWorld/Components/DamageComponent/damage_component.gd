@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 # todo – it might be worth to pack all the stats into resource
 @export var base_hp: float = 50.0

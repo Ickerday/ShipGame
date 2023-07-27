@@ -26,9 +26,9 @@ func _draw():
 	var torpedo: InventoryItem = torpedo_ref.get_ref()
 	if !torpedo:
 		return
-	draw_arc(Vector2.ZERO, torpedo.item_data.range, 0, TAU, 64, Color.RED, 5.0, true)
+	draw_arc(Vector2.ZERO, torpedo.item_data.missile_range, 0, TAU, 64, Color.RED, 5.0, true)
 	var mouse_position = get_local_mouse_position()
-	if mouse_position.length() <= torpedo.item_data.range:
+	if mouse_position.length() <= torpedo.item_data.missile_range:
 		draw_line(Vector2.ZERO, mouse_position, Color.WHITE, 4.0, true)
 
 

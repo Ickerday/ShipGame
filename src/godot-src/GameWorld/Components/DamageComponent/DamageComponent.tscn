@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlumpv4usqm3x"]
+
+[ext_resource type="Script" path="res://src/godot-src/GameWorld/Components/DamageComponent/damage_component.gd" id="1_3r5k3"]
+
+[node name="DamageComponent" type="Node"]
+script = ExtResource("1_3r5k3")
