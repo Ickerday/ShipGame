@@ -1,19 +1,12 @@
-extends Control
+extends Node2D
 
-class_name MissileButton
+class_name Wreck
 
-var item: InventoryItem
-@onready var sprite := $HBoxContainer/TextureRect
-@onready var button := $HBoxContainer/Button
+@onready var inventory := $InventoryComponent
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
-
-func _ready():
-	item.item_deleted.connect(_on_item_deleted)
-	sprite.texture = item.item_data.inventory_sprite
-	button.text = item.item_data.name
 
 ###############################################################################
 # Public functions                                                            #
@@ -23,8 +16,17 @@ func _ready():
 # Connections                                                                 #
 ###############################################################################
 
-func _on_item_deleted(_item: InventoryItem):
+func _on_plunge_area_area_entered(_area):
+	InputMediator.pillage_the_inventory.emit(inventory)
+
+
+func _on_plunge_area_area_exited(_area):
+	InputMediator.stop_the_plunge.emit()
+
+
+func _on_time_to_plunge_timeout():
 	queue_free()
+
 
 ###############################################################################
 # Private functions                                                           #

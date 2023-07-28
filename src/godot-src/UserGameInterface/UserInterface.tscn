@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cu5suy5vgbf7v" path="res://src/godot-src/UserGameInterface/Map/MapContainer.tscn" id="1_ttj7j"]
 [ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/godot-src/UserGameInterface/bottom_panel/BottomPanel.tscn" id="3_occkt"]
 [ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/godot-src/UserGameInterface/ContextMenuRight/MissileContextMenu/MissileContextMenu.tscn" id="4_7y6k8"]
+[ext_resource type="PackedScene" uid="uid://b68uro2oj27nq" path="res://src/godot-src/UserGameInterface/ContextMenuRight/PlungeContextMenu/PlungecontextMenu.tscn" id="4_rho07"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_fx1ar"]
 
@@ -95,6 +96,12 @@ size_flags_stretch_ratio = 0.2
 mouse_filter = 1
 
 [node name="MissileContextMenu" parent="Horizontal Splitter/ContextBoard" instance=ExtResource("4_7y6k8")]
+[node name="PlungecontextMenu" parent="Horizontal Splitter/ContextBoard" instance=ExtResource("4_rho07")]
+visible = false
+layout_mode = 1
+
+[node name="MissileContextMenu" parent="Horizontal Splitter/ContextBoard" instance=ExtResource("4_7y6k8")]
+visible = false
 layout_mode = 1
 
 [editable path="Horizontal Splitter/Vertical Splitter/BottomPanel"]

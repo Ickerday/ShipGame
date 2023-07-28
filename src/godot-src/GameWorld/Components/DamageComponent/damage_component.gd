@@ -1,32 +1,37 @@
-extends Control
+extends Node
 
-class_name MissileButton
+# todo – it might be worth to pack all the stats into resource
+@export var base_hp: float = 50.0
+var current_hp: float
 
-var item: InventoryItem
-@onready var sprite := $HBoxContainer/TextureRect
-@onready var button := $HBoxContainer/Button
+signal entity_damaged
+signal entity_killed()
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
 
 func _ready():
-	item.item_deleted.connect(_on_item_deleted)
-	sprite.texture = item.item_data.inventory_sprite
-	button.text = item.item_data.name
+	current_hp = base_hp
+
 
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
 
+func impact(damage: float):
+	current_hp -= damage
+	entity_damaged.emit()
+	
+	if current_hp <= 0:
+		entity_killed.emit()
+
+
+
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################
 
-func _on_item_deleted(_item: InventoryItem):
-	queue_free()
-
 ###############################################################################
 # Private functions                                                           #
 ###############################################################################
-

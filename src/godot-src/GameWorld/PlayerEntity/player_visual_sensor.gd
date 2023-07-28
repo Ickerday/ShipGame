@@ -22,7 +22,6 @@ signal body_left_sight(visibility_component: VisibilityComponent)
 func spot_the_body(body: Node) -> void:
 	# emitted when the new body is in sight – usually tells the body to uncover itself.
 	if body.has_node("VisibilityComponent"):
-		var body_id = body.get_parent().get_instance_id()
 		var visibility_component: VisibilityComponent = body.get_node("VisibilityComponent")
 		visibility_component.spot()
 		# IR signature detected
@@ -32,7 +31,6 @@ func spot_the_body(body: Node) -> void:
 func forget_the_body(body: Node) -> void:
 	# emitted when the new body leaves the sight – usually tells the body to cover itself.
 	if body.has_node("VisibilityComponent"):
-		var body_id = body.get_parent().get_instance_id()
 		var visibility_component: VisibilityComponent = body.get_node("VisibilityComponent")
 		visibility_component.hide()
 		body_left_sight.emit(visibility_component)

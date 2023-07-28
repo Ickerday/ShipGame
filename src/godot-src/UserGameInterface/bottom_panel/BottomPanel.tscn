@@ -12,6 +12,37 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_0fg8t"]
 
+[sub_resource type="GDScript" id="GDScript_orlhi"]
+script/source = "extends Button
+
+# Plunge Button
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	InputMediator.pillage_the_inventory.connect(_on_pillage_available)
+	InputMediator.stop_the_plunge.connect(set_disabled.bind(true))
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_pillage_available(_inventory: InventoryComponent):
+	set_disabled(false)
+
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
 [sub_resource type="GDScript" id="GDScript_y7ol1"]
 script/source = "extends VSlider
 
@@ -29,6 +60,7 @@ func _ready():
 		return
 
 	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+	
 	if not player_movement_component:
 		return
 
@@ -43,8 +75,8 @@ func _ready():
 # Connections                                                                 #
 ###############################################################################
 
-func _on_drag_ended(value_changed):
-	if value_changed:
+func _on_drag_ended(new_value_changed):
+	if new_value_changed:
 		InputMediator.new_desired_speed.emit(value, true)
 
 ###############################################################################
@@ -147,8 +179,8 @@ func _ready():
 # Connections                                                                 #
 ###############################################################################
 
-func _on_drag_ended(value_changed):
-	if value_changed:
+func _on_drag_ended(new_value_changed):
+	if new_value_changed:
 		InputMediator.new_desired_rotation.emit(value, true)
 
 ###############################################################################
@@ -296,7 +328,13 @@ text = "Pen"
 script = ExtResource("1_jtr8d")
 requested_state_change_on_click = 3
 
-[node name="CenterPanel" type="VBoxContainer" parent="MarginContainer/HorizontalSpitter"]
+[node name="PlungeButton" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Plunge"
+script = SubResource("GDScript_orlhi")
+
+[node name="Division1" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 8.0
