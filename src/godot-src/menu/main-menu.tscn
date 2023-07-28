@@ -62,15 +62,15 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VerticalSplitter" type="VBoxContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Title" type="Label" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/MarginContainer"]
+[node name="Title" type="Label" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "shitty_ship.exe"
 label_settings = SubResource("LabelSettings_i1428")
@@ -78,24 +78,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VerticalSplitter" type="VBoxContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="StartTestButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/CenterContainer/VerticalSplitter"]
+[node name="StartTestButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Test 7 (znaczniki przeciwników #1)"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/CenterContainer/VerticalSplitter"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="ExitButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/CenterContainer/VerticalSplitter"]
+[node name="ExitButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/CenterContainer/VerticalSplitter/StartTestButton" to="CanvasLayer2/MainMenu" method="start_test_level"]
-[connection signal="pressed" from="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VerticalSplitter/CenterContainer/VerticalSplitter/ExitButton" to="CanvasLayer2/MainMenu" method="exit_game"]
+[connection signal="pressed" from="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/StartTestButton" to="CanvasLayer2/MainMenu" method="start_test_level"]
+[connection signal="pressed" from="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/ExitButton" to="CanvasLayer2/MainMenu" method="exit_game"]
