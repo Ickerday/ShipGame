@@ -1,14 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2y0u86djwga2"]
+[gd_scene load_steps=5 format=3 uid="uid://d2y0u86djwga2"]
 
 [ext_resource type="Script" path="res://src/UserGameInterface/UserInterface.gd" id="1_4kdl8"]
-[ext_resource type="PackedScene" uid="uid://cu5suy5vgbf7v" path="res://src/UserGameInterface/Map/MapContainer.tscn" id="1_ttj7j"]
-[ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/UserGameInterface/BottomPanel/BottomPanel.tscn" id="3_occkt"]
+[ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/UserGameInterface/BottomPanel/BottomPanel.tscn" id="3_beqdx"]
 [ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/UserGameInterface/ContextMenuRight/MissileContextMenu/MissileContextMenu.tscn" id="4_7y6k8"]
-[ext_resource type="PackedScene" uid="uid://b68uro2oj27nq" path="res://src/UserGameInterface/ContextMenuRight/PlungeContextMenu/PlungecontextMenu.tscn" id="4_rho07"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_fx1ar"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_cd11e"]
+[ext_resource type="PackedScene" uid="uid://ycrkeahbcshb" path="res://src/UserGameInterface/ContextMenuRight/PlungeContextMenu/PlungecontextMenu.tscn" id="4_rho07"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -20,12 +15,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 script = ExtResource("1_4kdl8")
-
-[node name="Map" parent="." instance=ExtResource("1_ttj7j")]
-layout_mode = 1
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -46,38 +35,8 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 2
 
-[node name="BottomPanel" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_occkt")]
+[node name="BottomPanel" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_beqdx")]
 layout_mode = 2
-
-[node name="MissilesButton" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/VBoxContainer" index="0"]
-button_group = SubResource("ButtonGroup_fx1ar")
-
-[node name="CargoButton" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
-button_group = SubResource("ButtonGroup_fx1ar")
-
-[node name="RulerButton" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/VBoxContainer" index="2"]
-button_group = SubResource("ButtonGroup_fx1ar")
-
-[node name="PenButton" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/VBoxContainer" index="3"]
-button_group = SubResource("ButtonGroup_fx1ar")
-
-[node name="TimeScale1" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="0"]
-button_group = SubResource("ButtonGroup_cd11e")
-
-[node name="TimeScale2" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="1"]
-button_group = SubResource("ButtonGroup_cd11e")
-
-[node name="TimeScale3" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="2"]
-button_group = SubResource("ButtonGroup_cd11e")
-
-[node name="TimeScale4" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="3"]
-button_group = SubResource("ButtonGroup_cd11e")
-
-[node name="TimeScale5" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="4"]
-button_group = SubResource("ButtonGroup_cd11e")
-
-[node name="TimeScale6" parent="HBoxContainer/VBoxContainer/BottomPanel/MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="5"]
-button_group = SubResource("ButtonGroup_cd11e")
 
 [node name="ContextBoard" type="Control" parent="HBoxContainer"]
 layout_mode = 2
@@ -96,12 +55,12 @@ size_flags_stretch_ratio = 0.2
 mouse_filter = 1
 
 [node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
+layout_mode = 1
+
 [node name="PlungecontextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_rho07")]
 visible = false
 layout_mode = 1
 
-[node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
+[node name="MissileContextMenu2" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
 visible = false
 layout_mode = 1
-
-[editable path="HBoxContainer/VBoxContainer/BottomPanel"]

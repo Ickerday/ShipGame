@@ -1,6 +1,6 @@
 extends Node2D
 
-var marker_scene := preload("res://src/GameWorld/MapEntities/Markers/MarkerEntity.tscn")
+var marker_scene := preload("res://src/GameWorld/MapEntities/Markers/Marker.tscn")
 var ruler_scene := preload("res://src/GameWorld/MapEntities/Ruler/Ruler.tscn")
 #var pen_scene := preload()
 @onready var markers_on_map: Dictionary = {}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2fm08ytym82w"]
+[gd_scene load_steps=17 format=3 uid="uid://b2fm08ytym82w"]
 
 [ext_resource type="Script" path="res://src/UserGameInterface/utils/change_interface_state_button.gd" id="1_jtr8d"]
 [ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/images/ui_camera_center_button.png" id="1_tojqk"]
@@ -8,9 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b0axsqpauc72n" path="res://assets/images/ui_frame1.png" id="6_eacee"]
 [ext_resource type="Texture2D" uid="uid://du14o8pj5dyb5" path="res://assets/images/ui_frame_fill.png" id="7_7wqan"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_doay7"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_0fg8t"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_x7ujo"]
 
 [sub_resource type="GDScript" id="GDScript_orlhi"]
 script/source = "extends Button
@@ -42,6 +40,8 @@ func _on_pillage_available(_inventory: InventoryComponent):
 # Private functions                                                           #
 ###############################################################################
 "
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_0fg8t"]
 
 [sub_resource type="GDScript" id="GDScript_y7ol1"]
 script/source = "extends VSlider
@@ -288,66 +288,93 @@ texture = ExtResource("7_7wqan")
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="LeftPanel" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 
-[node name="MissilesButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -85.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MissilesButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_doay7")
+button_group = SubResource("ButtonGroup_x7ujo")
 text = "Missiles"
 
-[node name="CargoButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="CargoButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_doay7")
+button_group = SubResource("ButtonGroup_x7ujo")
 text = "Cargo"
 
-[node name="RulerButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="RulerButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_doay7")
+button_group = SubResource("ButtonGroup_x7ujo")
 text = "Ruler"
 script = ExtResource("1_jtr8d")
 requested_state_change_on_click = 2
 
-[node name="PenButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="PenButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_doay7")
+button_group = SubResource("ButtonGroup_x7ujo")
 text = "Pen"
 script = ExtResource("1_jtr8d")
 requested_state_change_on_click = 3
 
-[node name="PlungeButton" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+[node name="PlungeButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
-disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
 text = "Plunge"
 script = SubResource("GDScript_orlhi")
 
-[node name="Division1" type="VBoxContainer" parent="HBoxContainer"]
+[node name="MiddlePanel" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 8.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/CenterPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MiddlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer"]
 layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/CenterPanel/CenterContainer"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+metadata/_edit_group_ = true
 
-[node name="CenterCameraButton" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/CenterContainer/Control"]
+[node name="CenterCameraButton" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -366,49 +393,42 @@ texture_hover = ExtResource("1_tojqk")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/CenterPanel"]
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/CenterPanel"]
+[node name="TimeScalePicker" type="AspectRatioContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TimeScalePicker" type="Control" parent="MarginContainer/HBoxContainer/CenterPanel/Control2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -50.0
-offset_right = 250.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-mouse_filter = 1
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
 
-[node name="Background" type="NinePatchRect" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker"]
+[node name="Background" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.997539, 1)
 texture = ExtResource("3_3lvoj")
 
-[node name="TimeScaleButtons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker"]
+[node name="TimeScaleButtons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_group_ = true
 
-[node name="TimeScale1" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
+[node name="TimeScale1" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -418,7 +438,7 @@ texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale2" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
+[node name="TimeScale2" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -428,7 +448,7 @@ texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale3" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
+[node name="TimeScale3" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -438,7 +458,7 @@ texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale4" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
+[node name="TimeScale4" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -448,7 +468,7 @@ texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale5" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
+[node name="TimeScale5" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -458,7 +478,7 @@ texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale6" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
+[node name="TimeScale6" type="TextureButton" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/TimeScalePicker/Control/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -535,7 +555,6 @@ size_flags_stretch_ratio = 8.0
 min_value = -2.5
 max_value = 2.5
 step = 0.1
-value = 0.5
 tick_count = 10
 ticks_on_borders = true
 script = SubResource("GDScript_21otb")

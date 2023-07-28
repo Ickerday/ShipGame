@@ -2,10 +2,10 @@ extends Node2D
 
 class_name MapRuler
 
-var point_scene := preload("res://src/GameWorld/MapEntities/Ruler/ruler_point.tscn")
+var point_scene := preload("res://src/GameWorld/MapEntities/Ruler/RulerPoint.tscn")
 
 
-@onready var first_point := $ruler_point
+@onready var first_point := $RulerPoint
 
 var is_first_point_settled = false
 var second_point: Node2D
