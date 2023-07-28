@@ -9,7 +9,17 @@ script = ExtResource("1_jmdxl")
 
 [node name="GameWorldHandler" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer (Sky)" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer (Sky)"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.635294, 1, 1)
+
+[node name="CanvasLayer (UI)" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.015
 
-[node name="UserInterface" parent="CanvasLayer" instance=ExtResource("2_f23p2")]
+[node name="UserInterface" parent="CanvasLayer (UI)" instance=ExtResource("2_f23p2")]

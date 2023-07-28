@@ -1,9 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2fm08ytym82w"]
+[gd_scene load_steps=16 format=3 uid="uid://b2fm08ytym82w"]
 
 [ext_resource type="Script" path="res://src/godot-src/UserGameInterface/utils/change_interface_state_button.gd" id="1_jtr8d"]
 [ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/ui_camera_center_button.png" id="1_tojqk"]
 [ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/ui_time_scale_pointer.png" id="2_1ekan"]
+[ext_resource type="Texture2D" uid="uid://bsw5p6qe2dq4l" path="res://assets/ui_time_scale.png" id="3_3lvoj"]
 [ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/ui_time_scale_pointer_hover.png" id="3_w08ao"]
+[ext_resource type="Texture2D" uid="uid://b0axsqpauc72n" path="res://assets/ui_frame1.png" id="6_eacee"]
+[ext_resource type="Texture2D" uid="uid://du14o8pj5dyb5" path="res://assets/ui_frame_fill.png" id="7_7wqan"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_doay7"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_0fg8t"]
 
 [sub_resource type="GDScript" id="GDScript_y7ol1"]
 script/source = "extends VSlider
@@ -219,108 +226,143 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Background" type="Control" parent="."]
+clip_contents = true
+layout_mode = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Frame" type="NinePatchRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_eacee")
+
+[node name="Fill" type="NinePatchRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7wqan")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalSpitter" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ChangeModeButtons" type="Control" parent="HBoxContainer"]
+[node name="VerticalSplitter" type="VBoxContainer" parent="MarginContainer/HorizontalSpitter"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
+size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="HBoxContainer/ChangeModeButtons"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ChangeModeButtons"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ChangeModeButtons/MarginContainer"]
+[node name="MissilesButton" type="Button" parent="MarginContainer/HorizontalSpitter/VerticalSplitter"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_doay7")
+text = "Missiles"
 
-[node name="Button" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+[node name="CargoButton" type="Button" parent="MarginContainer/HorizontalSpitter/VerticalSplitter"]
 layout_mode = 2
-text = "missiles"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_doay7")
+text = "Cargo"
 
-[node name="Button2" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+[node name="RulerButton" type="Button" parent="MarginContainer/HorizontalSpitter/VerticalSplitter"]
 layout_mode = 2
-text = "cargo"
-
-[node name="Ruler" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
-layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_doay7")
 text = "Ruler"
 script = ExtResource("1_jtr8d")
 requested_state_change_on_click = 2
 
-[node name="Pen" type="Button" parent="HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer"]
+[node name="PenButton" type="Button" parent="MarginContainer/HorizontalSpitter/VerticalSplitter"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_doay7")
 text = "Pen"
 script = ExtResource("1_jtr8d")
 requested_state_change_on_click = 3
 
-[node name="Division1" type="VBoxContainer" parent="HBoxContainer"]
+[node name="CenterPanel" type="VBoxContainer" parent="MarginContainer/HorizontalSpitter"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
+size_flags_stretch_ratio = 8.0
 
-[node name="Control" type="Control" parent="HBoxContainer/Division1"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HorizontalSpitter/CenterPanel"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="HBoxContainer/Division1/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Control" type="Control" parent="MarginContainer/HorizontalSpitter/CenterPanel/CenterContainer"]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterCameraButton" type="TextureButton" parent="HBoxContainer/Division1/Control"]
+[node name="CenterCameraButton" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/CenterContainer/Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("1_tojqk")
 texture_pressed = ExtResource("1_tojqk")
 texture_hover = ExtResource("1_tojqk")
-texture_disabled = ExtResource("1_tojqk")
-texture_focused = ExtResource("1_tojqk")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Control2" type="Control" parent="HBoxContainer/Division1"]
+[node name="Spacer" type="Control" parent="MarginContainer/HorizontalSpitter/CenterPanel"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="MarginContainer/HorizontalSpitter/CenterPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimeScalePicker" type="Control" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 1
 
-[node name="Panel" type="Panel" parent="HBoxContainer/Division1/Control2"]
+[node name="Background" type="NinePatchRect" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+scale = Vector2(0.997539, 1)
+texture = ExtResource("3_3lvoj")
 
-[node name="TimeScaleButtons" type="HBoxContainer" parent="HBoxContainer/Division1/Control2"]
+[node name="TimeScaleButtons" type="HBoxContainer" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -328,93 +370,90 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeScale1" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+[node name="TimeScale1" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_1ekan")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_0fg8t")
+texture_pressed = ExtResource("2_1ekan")
 texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale2" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+[node name="TimeScale2" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_1ekan")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_0fg8t")
+texture_pressed = ExtResource("2_1ekan")
 texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale3" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+[node name="TimeScale3" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_1ekan")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_0fg8t")
+texture_pressed = ExtResource("2_1ekan")
 texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale4" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+[node name="TimeScale4" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_1ekan")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_0fg8t")
+texture_pressed = ExtResource("2_1ekan")
 texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale5" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+[node name="TimeScale5" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_1ekan")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_0fg8t")
+texture_pressed = ExtResource("2_1ekan")
 texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TimeScale6" type="TextureButton" parent="HBoxContainer/Division1/Control2/TimeScaleButtons"]
+[node name="TimeScale6" type="TextureButton" parent="MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_1ekan")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_0fg8t")
+texture_pressed = ExtResource("2_1ekan")
 texture_hover = ExtResource("3_w08ao")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SpeedControl" type="Control" parent="HBoxContainer"]
+[node name="SpeedControl" type="Control" parent="MarginContainer/HorizontalSpitter"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel3" type="Panel" parent="HBoxContainer/SpeedControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HorizontalSpitter/SpeedControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeedControl"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_right = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeedControl/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "SPEED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="SpeedSlider" type="VSlider" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+[node name="SpeedSlider" type="VSlider" parent="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 1
 size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
 min_value = -50.0
 max_value = 50.0
 step = 10.0
@@ -422,55 +461,39 @@ tick_count = 10
 ticks_on_borders = true
 script = SubResource("GDScript_y7ol1")
 
-[node name="CurrentDesiredSpeed" type="Label" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+[node name="CurrentDesiredSpeedLabel" type="Label" parent="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "0"
 script = SubResource("GDScript_g7gci")
 
-[node name="FullStopButton" type="Button" parent="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer"]
+[node name="FullStopButton" type="Button" parent="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer"]
 layout_mode = 2
 text = "Full Stop"
 script = SubResource("GDScript_yis1m")
 
-[node name="RotationControl" type="Control" parent="HBoxContainer"]
+[node name="RotationControl" type="Control" parent="MarginContainer/HorizontalSpitter"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel4" type="Panel" parent="HBoxContainer/RotationControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HorizontalSpitter/RotationControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/RotationControl"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_right = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RotationControl/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "ROTATION"
 
-[node name="RotationSlider" type="VSlider" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+[node name="RotationSlider" type="VSlider" parent="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 1
 size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
 min_value = -2.5
 max_value = 2.5
 step = 0.1
@@ -479,18 +502,19 @@ tick_count = 10
 ticks_on_borders = true
 script = SubResource("GDScript_21otb")
 
-[node name="CurrentDesiredRotation" type="Label" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+[node name="CurrentDesiredRotationLabel" type="Label" parent="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "0"
 script = SubResource("GDScript_dgxqs")
 
-[node name="FullStopButton" type="Button" parent="HBoxContainer/RotationControl/MarginContainer/VBoxContainer"]
+[node name="FullStopButton" type="Button" parent="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer"]
 layout_mode = 2
 text = "Full Stop"
 script = SubResource("GDScript_ggvrq")
 
-[connection signal="drag_ended" from="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/SpeedSlider" to="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/SpeedSlider" method="_on_drag_ended"]
-[connection signal="pressed" from="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/FullStopButton" to="HBoxContainer/SpeedControl/MarginContainer/VBoxContainer/FullStopButton" method="_on_pressed"]
-[connection signal="drag_ended" from="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/RotationSlider" to="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/RotationSlider" method="_on_drag_ended"]
-[connection signal="pressed" from="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/FullStopButton" to="HBoxContainer/RotationControl/MarginContainer/VBoxContainer/FullStopButton" method="_on_pressed"]
+[connection signal="drag_ended" from="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer/SpeedSlider" to="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer/SpeedSlider" method="_on_drag_ended"]
+[connection signal="drag_started" from="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer/SpeedSlider" to="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer/CurrentDesiredSpeedLabel" method="_on_speed_slider_drag_started"]
+[connection signal="pressed" from="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer/FullStopButton" to="MarginContainer/HorizontalSpitter/SpeedControl/VBoxContainer/FullStopButton" method="_on_pressed"]
+[connection signal="drag_ended" from="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer/RotationSlider" to="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer/RotationSlider" method="_on_drag_ended"]
+[connection signal="pressed" from="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer/FullStopButton" to="MarginContainer/HorizontalSpitter/RotationControl/VBoxContainer/FullStopButton" method="_on_pressed"]

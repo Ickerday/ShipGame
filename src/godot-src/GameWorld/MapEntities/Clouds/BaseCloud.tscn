@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://blr674cuc5lbl"]
+
+[node name="BaseCloud" type="Area2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

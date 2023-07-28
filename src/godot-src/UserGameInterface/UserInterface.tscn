@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2y0u86djwga2"]
+[gd_scene load_steps=7 format=3 uid="uid://d2y0u86djwga2"]
 
 [ext_resource type="Script" path="res://src/godot-src/UserGameInterface/UserInterface.gd" id="1_4kdl8"]
 [ext_resource type="PackedScene" uid="uid://cu5suy5vgbf7v" path="res://src/godot-src/UserGameInterface/Map/MapContainer.tscn" id="1_ttj7j"]
 [ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/godot-src/UserGameInterface/bottom_panel/BottomPanel.tscn" id="3_occkt"]
 [ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/godot-src/UserGameInterface/ContextMenuRight/MissileContextMenu/MissileContextMenu.tscn" id="4_7y6k8"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fx1ar"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_cd11e"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -16,7 +20,13 @@ size_flags_horizontal = 3
 mouse_filter = 1
 script = ExtResource("1_4kdl8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Map" parent="." instance=ExtResource("1_ttj7j")]
+layout_mode = 1
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 1
+
+[node name="Horizontal Splitter" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,27 +34,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Vertical Splitter" type="VBoxContainer" parent="Horizontal Splitter"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
 
-[node name="Map" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_ttj7j")]
+[node name="Empty" type="Control" parent="Horizontal Splitter/Vertical Splitter"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-mouse_filter = 1
-
-[node name="BottomPanel" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_occkt")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ContextBoard" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
+size_flags_stretch_ratio = 3.0
 mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="HBoxContainer/ContextBoard"]
+[node name="BottomPanel" parent="Horizontal Splitter/Vertical Splitter" instance=ExtResource("3_occkt")]
+layout_mode = 2
+
+[node name="MissilesButton" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/VerticalSplitter" index="0"]
+button_group = SubResource("ButtonGroup_fx1ar")
+
+[node name="CargoButton" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/VerticalSplitter" index="1"]
+button_group = SubResource("ButtonGroup_fx1ar")
+
+[node name="RulerButton" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/VerticalSplitter" index="2"]
+button_group = SubResource("ButtonGroup_fx1ar")
+
+[node name="PenButton" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/VerticalSplitter" index="3"]
+button_group = SubResource("ButtonGroup_fx1ar")
+
+[node name="TimeScale1" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="0"]
+button_group = SubResource("ButtonGroup_cd11e")
+
+[node name="TimeScale2" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="1"]
+button_group = SubResource("ButtonGroup_cd11e")
+
+[node name="TimeScale3" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="2"]
+button_group = SubResource("ButtonGroup_cd11e")
+
+[node name="TimeScale4" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="3"]
+button_group = SubResource("ButtonGroup_cd11e")
+
+[node name="TimeScale5" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="4"]
+button_group = SubResource("ButtonGroup_cd11e")
+
+[node name="TimeScale6" parent="Horizontal Splitter/Vertical Splitter/BottomPanel/MarginContainer/HorizontalSpitter/CenterPanel/Control2/TimeScalePicker/TimeScaleButtons" index="5"]
+button_group = SubResource("ButtonGroup_cd11e")
+
+[node name="ContextBoard" type="Control" parent="Horizontal Splitter"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Background" type="Panel" parent="Horizontal Splitter/ContextBoard"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,10 +94,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 mouse_filter = 1
 
-[node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
-visible = false
+[node name="MissileContextMenu" parent="Horizontal Splitter/ContextBoard" instance=ExtResource("4_7y6k8")]
 layout_mode = 1
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/BottomPanel/HBoxContainer/ChangeModeButtons/MarginContainer/VBoxContainer/Button" to="HBoxContainer/ContextBoard/MissileContextMenu" method="activate"]
-
-[editable path="HBoxContainer/VBoxContainer/BottomPanel"]
+[editable path="Horizontal Splitter/Vertical Splitter/BottomPanel"]
