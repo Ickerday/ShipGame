@@ -1,0 +1,184 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2fm08ytym82w"]
+
+[ext_resource type="Script" path="res://src/user_interface/utils/change_interface_state_button.gd" id="1_jtr8d"]
+[ext_resource type="PackedScene" uid="uid://bxg4t1ssqwsn4" path="res://src/user_interface/bottom_panel/center_camera_control.tscn" id="4_8t434"]
+[ext_resource type="PackedScene" uid="uid://dbbsfpa0mmidy" path="res://src/user_interface/bottom_panel/time_scale_picker.tscn" id="5_ftrxu"]
+[ext_resource type="Texture2D" uid="uid://b0axsqpauc72n" path="res://assets/images/ui_frame1.png" id="6_eacee"]
+[ext_resource type="PackedScene" uid="uid://ct1uiccpkbtgh" path="res://src/user_interface/bottom_panel/speed_control.tscn" id="6_rymla"]
+[ext_resource type="Texture2D" uid="uid://du14o8pj5dyb5" path="res://assets/images/ui_frame_fill.png" id="7_7wqan"]
+[ext_resource type="PackedScene" uid="uid://py4rbgp1jpcs" path="res://src/user_interface/bottom_panel/rotation_control.tscn" id="7_f73of"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_x7ujo"]
+
+[sub_resource type="GDScript" id="GDScript_orlhi"]
+script/source = "extends Button
+
+# Plunge Button
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	InputMediator.pillage_the_inventory.connect(_on_pillage_available)
+	InputMediator.stop_the_plunge.connect(set_disabled.bind(true))
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_pillage_available(_inventory: InventoryComponent):
+	set_disabled(false)
+
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[node name="BottomPanel" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="Control" parent="."]
+clip_contents = true
+layout_mode = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Frame" type="NinePatchRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_eacee")
+
+[node name="Fill" type="NinePatchRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7wqan")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LeftPanel" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -85.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MissilesButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Missiles"
+
+[node name="CargoButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Cargo"
+
+[node name="RulerButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Ruler"
+script = ExtResource("1_jtr8d")
+requested_state_change_on_click = 2
+
+[node name="PenButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Pen"
+script = ExtResource("1_jtr8d")
+requested_state_change_on_click = 3
+
+[node name="PlungeButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Plunge"
+script = SubResource("GDScript_orlhi")
+
+[node name="MiddlePanel" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MiddlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterCameraControl" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer" instance=ExtResource("4_8t434")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimeScalePicker" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer2/AspectRatioContainer" instance=ExtResource("5_ftrxu")]
+layout_mode = 2
+
+[node name="SpeedControl" parent="MarginContainer/HBoxContainer" instance=ExtResource("6_rymla")]
+layout_mode = 2
+
+[node name="RotationControl" parent="MarginContainer/HBoxContainer" instance=ExtResource("7_f73of")]
+layout_mode = 2

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxg4t1ssqwsn4"]
+
+[ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/images/ui_camera_center_button.png" id="1_24brb"]
+
+[node name="CenterCameraControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="CenterCameraButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_24brb")
+texture_pressed = ExtResource("1_24brb")
+texture_hover = ExtResource("1_24brb")
+ignore_texture_size = true
+stretch_mode = 5

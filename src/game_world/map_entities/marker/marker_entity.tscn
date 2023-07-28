@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgap1ybeyppsl"]
+
+[ext_resource type="Script" path="res://src/game_world/map_entities/marker/marker_entity.gd" id="1_clyvt"]
+[ext_resource type="Texture2D" uid="uid://chwy0eff7camu" path="res://assets/svg/fontawesome/solid/circle-exclamation.svg" id="2_88cg8"]
+
+[node name="MarkerEntity" type="Node2D"]
+script = ExtResource("1_clyvt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_88cg8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 32.0
+offset_top = -39.0
+offset_right = 128.0
+offset_bottom = 47.0
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "NAME"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Seen" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Seen"
+vertical_alignment = 1
+
+[node name="ExtraInfo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Extra Info"
+vertical_alignment = 1

@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="SHIITY SHIP"
-run/main_scene="res://src/menu/MainMenu.tscn"
+run/main_scene="res://src/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-boot_splash/bg_color=Color(0.513726, 0.376471, 0.501961, 1)
-config/icon="res://assets/images/zeppelin.svg"
+boot_splash/bg_color=Color(0, 0.635294, 1, 1)
+config/icon="res://assets/svg/zeppelin.svg"
 
 [autoload]
 
-InputMediator="*res://src/GameWorld/Managers/InputMediator.tscn"
+InputMediator="*res://src/game_world/managers/input_mediator.tscn"
 
 [display]
 
@@ -34,8 +34,8 @@ import/fbx/enabled=false
 
 [gui]
 
-theme/custom="res://data/theme/ShittyShip.theme"
-theme/custom_font="res://data/theme/font_comic_sans_ms.tres"
+theme/custom="res://resources/theme/shitty_ship.theme"
+theme/custom_font="res://resources/theme/font_comic_sans_ms.tres"
 
 [input]
 
@@ -107,6 +107,7 @@ time_4x={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 anti_aliasing/quality/msaa_2d=2
 anti_aliasing/quality/screen_space_aa=1
 anti_aliasing/quality/use_taa=true

@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3orlwhntwmps"]
+
+[ext_resource type="Texture2D" uid="uid://bkiye01blg88s" path="res://assets/svg/godot.svg" id="1_exgva"]
+
+[sub_resource type="GDScript" id="GDScript_1f4wc"]
+script/source = "extends Node2D
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
+		get_parent().queue_free()
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkexe"]
+radius = 16.0
+
+[node name="RulerPoint" type="Node2D"]
+script = SubResource("GDScript_1f4wc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_exgva")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lkexe")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

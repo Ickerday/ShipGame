@@ -1,0 +1,152 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct1uiccpkbtgh"]
+
+[sub_resource type="GDScript" id="GDScript_y7ol1"]
+script/source = "extends VSlider
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	await get_tree().process_frame
+	if not InputMediator.player:
+		return
+
+	var player = InputMediator.player.get_ref()
+	if not player:
+		return
+
+	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+
+	if not player_movement_component:
+		return
+
+	player_movement_component.desired_speed_changed.connect(set_value)
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_drag_ended(new_value_changed):
+	if new_value_changed:
+		InputMediator.new_desired_speed.emit(value, true)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_g7gci"]
+script/source = "extends Label
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	await get_tree().process_frame
+	if not InputMediator.player:
+		return
+
+	var player = InputMediator.player.get_ref()
+	if not player:
+		return
+
+	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+
+	if not player_movement_component:
+		return
+
+	player_movement_component.desired_speed_changed.connect(update_label)
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func update_label(value):
+	text = str(value)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[sub_resource type="GDScript" id="GDScript_yis1m"]
+script/source = "extends Button
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_pressed():
+	InputMediator.new_desired_speed.emit(0, true)
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[node name="SpeedControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SPEED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedSlider" type="VSlider" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+min_value = -50.0
+max_value = 50.0
+step = 10.0
+tick_count = 10
+ticks_on_borders = true
+script = SubResource("GDScript_y7ol1")
+
+[node name="CurrentDesiredSpeedLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+script = SubResource("GDScript_g7gci")
+
+[node name="FullStopButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Full Stop"
+script = SubResource("GDScript_yis1m")
+
+[connection signal="drag_ended" from="VBoxContainer/SpeedSlider" to="VBoxContainer/SpeedSlider" method="_on_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/SpeedSlider" to="VBoxContainer/CurrentDesiredSpeedLabel" method="_on_speed_slider_drag_started"]
+[connection signal="pressed" from="VBoxContainer/FullStopButton" to="VBoxContainer/FullStopButton" method="_on_pressed"]

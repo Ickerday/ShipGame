@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfhqxtlvo2f3h"]
+
+[ext_resource type="Script" path="res://src/game_world/game_world.gd" id="1_00v07"]
+[ext_resource type="PackedScene" uid="uid://bokcnkv17d3sw" path="res://src/game_world/managers/marker_manager/map_entities_manager.tscn" id="2_5i7j1"]
+[ext_resource type="PackedScene" uid="uid://d1pr85qxitfqk" path="res://src/game_world/map_entities/player/player_entity.tscn" id="3_y1rmg"]
+[ext_resource type="PackedScene" uid="uid://dyvklrcexk8k" path="res://src/game_world/map_entities/enemy/enemy_entity.tscn" id="4_4lb5p"]
+
+[node name="GameWorld" type="Node2D" groups=["GameWorld"]]
+script = ExtResource("1_00v07")
+
+[node name="MapEntitiesManager" parent="." instance=ExtResource("2_5i7j1")]
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("3_y1rmg")]
+
+[node name="Enemy" parent="Entities" instance=ExtResource("4_4lb5p")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(94, -177)
+
+[node name="Enemy2" parent="Entities" instance=ExtResource("4_4lb5p")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(19, 204)
+
+[node name="Enemy3" parent="Entities" instance=ExtResource("4_4lb5p")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(319, 97)
+
+[node name="Enemy4" parent="Entities" instance=ExtResource("4_4lb5p")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-471, -369)
+
+[node name="Enemy5" parent="Entities" instance=ExtResource("4_4lb5p")]
+position = Vector2(603, -233)

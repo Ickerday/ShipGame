@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbbsfpa0mmidy"]
+
+[ext_resource type="Texture2D" uid="uid://bsw5p6qe2dq4l" path="res://assets/images/ui_time_scale.png" id="1_2navb"]
+[ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/images/ui_time_scale_pointer.png" id="2_ts87f"]
+[ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/images/ui_time_scale_pointer_hover.png" id="3_lw2x5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_8131t"]
+
+[node name="TimeScalePicker" type="Control"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2navb")
+
+[node name="TimeScaleButtons" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="TimeScale1" type="TextureButton" parent="TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8131t")
+texture_pressed = ExtResource("2_ts87f")
+texture_hover = ExtResource("3_lw2x5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale2" type="TextureButton" parent="TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8131t")
+texture_pressed = ExtResource("2_ts87f")
+texture_hover = ExtResource("3_lw2x5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale3" type="TextureButton" parent="TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8131t")
+texture_pressed = ExtResource("2_ts87f")
+texture_hover = ExtResource("3_lw2x5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale4" type="TextureButton" parent="TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8131t")
+texture_pressed = ExtResource("2_ts87f")
+texture_hover = ExtResource("3_lw2x5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale5" type="TextureButton" parent="TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8131t")
+texture_pressed = ExtResource("2_ts87f")
+texture_hover = ExtResource("3_lw2x5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TimeScale6" type="TextureButton" parent="TimeScaleButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8131t")
+texture_pressed = ExtResource("2_ts87f")
+texture_hover = ExtResource("3_lw2x5")
+ignore_texture_size = true
+stretch_mode = 5
