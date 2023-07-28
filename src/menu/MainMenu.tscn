@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnos77io5rb3u"]
+
+[ext_resource type="PackedScene" uid="uid://dpj1mwvpsj7gm" path="res://src/UserGameInterface/SkyBackground/SkyBackground.tscn" id="1_uwp8w"]
+
+[sub_resource type="GDScript" id="GDScript_mwnog"]
+resource_name = "MainMenu"
+script/source = "extends Control
+
+var test_level = preload(\"res://src/main/MainGameLoop.tscn\")
+
+
+func start_test_level():
+	get_tree().root.add_child(test_level.instantiate())
+	queue_free()
+
+
+func exit_game():
+	get_tree().quit()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_i1428"]
+font_size = 60
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-2, 3)
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SkyBackground" parent="CanvasLayer" instance=ExtResource("1_uwp8w")]
+scale = Vector2(2, 2)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -800.0
+offset_bottom = -450.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_mwnog")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/MainMenu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Title" type="Label" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "shitty_ship.exe"
+label_settings = SubResource("LabelSettings_i1428")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="StartTestButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 7 (znaczniki przeciwników #1)"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/StartTestButton" to="CanvasLayer2/MainMenu" method="start_test_level"]
+[connection signal="pressed" from="CanvasLayer2/MainMenu/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/ExitButton" to="CanvasLayer2/MainMenu" method="exit_game"]

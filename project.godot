@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="SHIITY SHIP"
-run/main_scene="res://src/godot-src/menu/main-menu.tscn"
+run/main_scene="res://src/menu/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/bg_color=Color(0.513726, 0.376471, 0.501961, 1)
 config/icon="res://assets/zeppelin.svg"
 
 [autoload]
 
-InputMediator="*res://src/godot-src/GameWorld/Managers/InputMediator.tscn"
+InputMediator="*res://src/GameWorld/Managers/InputMediator.tscn"
 
 [display]
 
