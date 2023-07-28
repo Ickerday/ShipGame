@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5epbvotjkark"
-path="res://.godot/imported/ui_fader_1.png-8442fd7f94403d2e8360cf5a41fb3b11.ctex"
+uid="uid://bsw5p6qe2dq4l"
+path="res://.godot/imported/ui_time_scale.png-86d6809e2c23dc230666476ea8026b86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_fader_1.png"
-dest_files=["res://.godot/imported/ui_fader_1.png-8442fd7f94403d2e8360cf5a41fb3b11.ctex"]
+source_file="res://assets/images/ui_time_scale.png"
+dest_files=["res://.godot/imported/ui_time_scale.png-86d6809e2c23dc230666476ea8026b86.ctex"]
 
 [params]
 

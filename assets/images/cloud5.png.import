@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b67pj4ho3womt"
-path="res://.godot/imported/ui_steering_wheel.png-eca433a627f1c146ed3b0b2e74b5c9b5.ctex"
+uid="uid://c08sribl08o0x"
+path="res://.godot/imported/cloud5.png-768a909c94c36afb6525a92ab2973fdf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_steering_wheel.png"
-dest_files=["res://.godot/imported/ui_steering_wheel.png-eca433a627f1c146ed3b0b2e74b5c9b5.ctex"]
+source_file="res://assets/images/cloud5.png"
+dest_files=["res://.godot/imported/cloud5.png-768a909c94c36afb6525a92ab2973fdf.ctex"]
 
 [params]
 

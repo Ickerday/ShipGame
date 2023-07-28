@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=3 uid="uid://b2fm08ytym82w"]
 
 [ext_resource type="Script" path="res://src/UserGameInterface/utils/change_interface_state_button.gd" id="1_jtr8d"]
-[ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/ui_camera_center_button.png" id="1_tojqk"]
-[ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/ui_time_scale_pointer.png" id="2_1ekan"]
-[ext_resource type="Texture2D" uid="uid://bsw5p6qe2dq4l" path="res://assets/ui_time_scale.png" id="3_3lvoj"]
-[ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/ui_time_scale_pointer_hover.png" id="3_w08ao"]
-[ext_resource type="Texture2D" uid="uid://b0axsqpauc72n" path="res://assets/ui_frame1.png" id="6_eacee"]
-[ext_resource type="Texture2D" uid="uid://du14o8pj5dyb5" path="res://assets/ui_frame_fill.png" id="7_7wqan"]
+[ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/images/ui_camera_center_button.png" id="1_tojqk"]
+[ext_resource type="Texture2D" uid="uid://bfhi0rq364ul5" path="res://assets/images/ui_time_scale_pointer.png" id="2_1ekan"]
+[ext_resource type="Texture2D" uid="uid://bsw5p6qe2dq4l" path="res://assets/images/ui_time_scale.png" id="3_3lvoj"]
+[ext_resource type="Texture2D" uid="uid://cyvvxmkj056so" path="res://assets/images/ui_time_scale_pointer_hover.png" id="3_w08ao"]
+[ext_resource type="Texture2D" uid="uid://b0axsqpauc72n" path="res://assets/images/ui_frame1.png" id="6_eacee"]
+[ext_resource type="Texture2D" uid="uid://du14o8pj5dyb5" path="res://assets/images/ui_frame_fill.png" id="7_7wqan"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_doay7"]
 

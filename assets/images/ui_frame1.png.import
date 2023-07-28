@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ep8sggijkm7q"
-path="res://.godot/imported/ui_steering_pointer.png-de17b801e175a0a753d5cd067114d325.ctex"
+uid="uid://b0axsqpauc72n"
+path="res://.godot/imported/ui_frame1.png-76fa47f65d372809bb1d9d60dc678c43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_steering_pointer.png"
-dest_files=["res://.godot/imported/ui_steering_pointer.png-de17b801e175a0a753d5cd067114d325.ctex"]
+source_file="res://assets/images/ui_frame1.png"
+dest_files=["res://.godot/imported/ui_frame1.png-76fa47f65d372809bb1d9d60dc678c43.ctex"]
 
 [params]
 

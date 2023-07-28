@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpjaihg6rvgij"
-path="res://.godot/imported/yacht1.png-9d4fbfa2becebb3f4140209e5323899f.ctex"
+uid="uid://db0lqv2atxmoy"
+path="res://.godot/imported/cloud4.png-42b9ff176b3ed8720a7b808f53e03042.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/yacht1.png"
-dest_files=["res://.godot/imported/yacht1.png-9d4fbfa2becebb3f4140209e5323899f.ctex"]
+source_file="res://assets/images/cloud4.png"
+dest_files=["res://.godot/imported/cloud4.png-42b9ff176b3ed8720a7b808f53e03042.ctex"]
 
 [params]
 

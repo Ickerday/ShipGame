@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boit0n21mqv0r"
-path="res://.godot/imported/ui_camera_center_button.png-1bd038714d5c148bbeafbfa26e7396c7.ctex"
+uid="uid://b67pj4ho3womt"
+path="res://.godot/imported/ui_steering_wheel.png-297dfeb1e1c000837e73dcaf23d7fa69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_camera_center_button.png"
-dest_files=["res://.godot/imported/ui_camera_center_button.png-1bd038714d5c148bbeafbfa26e7396c7.ctex"]
+source_file="res://assets/images/ui_steering_wheel.png"
+dest_files=["res://.godot/imported/ui_steering_wheel.png-297dfeb1e1c000837e73dcaf23d7fa69.ctex"]
 
 [params]
 

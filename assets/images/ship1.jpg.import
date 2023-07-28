@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyvvxmkj056so"
-path="res://.godot/imported/ui_time_scale_pointer_hover.png-e73800beb6292d638137c7ea987fa0d4.ctex"
+uid="uid://7e8jsxpsp5dn"
+path="res://.godot/imported/ship1.jpg-751ad88079e5393b24b8d0a7519b5fde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_time_scale_pointer_hover.png"
-dest_files=["res://.godot/imported/ui_time_scale_pointer_hover.png-e73800beb6292d638137c7ea987fa0d4.ctex"]
+source_file="res://assets/images/ship1.jpg"
+dest_files=["res://.godot/imported/ship1.jpg-751ad88079e5393b24b8d0a7519b5fde.ctex"]
 
 [params]
 

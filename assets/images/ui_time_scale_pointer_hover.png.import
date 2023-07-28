@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3b5e00t5i13o"
-path="res://.godot/imported/cloud6.png-2f3ba612aff88364765f27a8ac469340.ctex"
+uid="uid://cyvvxmkj056so"
+path="res://.godot/imported/ui_time_scale_pointer_hover.png-b607483b330efe2511ac85cd55cdcd06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cloud6.png"
-dest_files=["res://.godot/imported/cloud6.png-2f3ba612aff88364765f27a8ac469340.ctex"]
+source_file="res://assets/images/ui_time_scale_pointer_hover.png"
+dest_files=["res://.godot/imported/ui_time_scale_pointer_hover.png-b607483b330efe2511ac85cd55cdcd06.ctex"]
 
 [params]
 

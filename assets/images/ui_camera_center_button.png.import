@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dniojriyqs4hr"
-path="res://.godot/imported/ui_fader_1_dial.png-e72fb6d5cb3cff94cc470ec4da196a33.ctex"
+uid="uid://boit0n21mqv0r"
+path="res://.godot/imported/ui_camera_center_button.png-50a80eb1de5414f136c8b9e000fcee58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_fader_1_dial.png"
-dest_files=["res://.godot/imported/ui_fader_1_dial.png-e72fb6d5cb3cff94cc470ec4da196a33.ctex"]
+source_file="res://assets/images/ui_camera_center_button.png"
+dest_files=["res://.godot/imported/ui_camera_center_button.png-50a80eb1de5414f136c8b9e000fcee58.ctex"]
 
 [params]
 

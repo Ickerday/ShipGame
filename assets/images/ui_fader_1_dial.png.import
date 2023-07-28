@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csw0u1x6xxqud"
-path="res://.godot/imported/cloud1.png-4f161184a440a8127c1fb200d2833bb7.ctex"
+uid="uid://dniojriyqs4hr"
+path="res://.godot/imported/ui_fader_1_dial.png-0b17547c7eb6c874864b0829034c8fe8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cloud1.png"
-dest_files=["res://.godot/imported/cloud1.png-4f161184a440a8127c1fb200d2833bb7.ctex"]
+source_file="res://assets/images/ui_fader_1_dial.png"
+dest_files=["res://.godot/imported/ui_fader_1_dial.png-0b17547c7eb6c874864b0829034c8fe8.ctex"]
 
 [params]
 
