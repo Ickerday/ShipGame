@@ -43,7 +43,6 @@ func create_new_wreck_from_entity(entity: CharacterBody2D):
 
 
 func _on_entity_killed(entity: Variant):
-	print(entity)
 	if entity is Node and (entity as Node).is_in_group("Wreckable"):
 		create_new_wreck_from_entity(entity as CharacterBody2D)
 

@@ -46,7 +46,7 @@ func _process(delta):
 	camera.zoom = lerp(camera.zoom, Vector2(requested_camera_zoom, requested_camera_zoom), min(camera_zoom_speed * delta, 1.0))
 
 
-func _gui_input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseMotion and event.button_mask == MOUSE_BUTTON_MASK_RIGHT and !track_player_mode:
 		requested_camera_movement += event.relative * (max_zoom - requested_camera_zoom + default_zoom_speed)
 		get_viewport().set_input_as_handled()
@@ -59,6 +59,7 @@ func _gui_input(event):
 			get_viewport().set_input_as_handled()
 	if !get_viewport().is_input_handled():
 		viewport.push_input(event.duplicate(), false)
+
 
 ###############################################################################
 # Public functions                                                            #
