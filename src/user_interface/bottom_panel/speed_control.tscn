@@ -148,5 +148,4 @@ text = "Full Stop"
 script = SubResource("GDScript_yis1m")
 
 [connection signal="drag_ended" from="VBoxContainer/SpeedSlider" to="VBoxContainer/SpeedSlider" method="_on_drag_ended"]
-[connection signal="drag_started" from="VBoxContainer/SpeedSlider" to="VBoxContainer/CurrentDesiredSpeedLabel" method="_on_speed_slider_drag_started"]
 [connection signal="pressed" from="VBoxContainer/FullStopButton" to="VBoxContainer/FullStopButton" method="_on_pressed"]

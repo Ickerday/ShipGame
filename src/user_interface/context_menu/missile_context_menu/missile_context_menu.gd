@@ -18,12 +18,16 @@ func _ready():
 	var player: CharacterBody2D = player_ref.get_ref()
 	inventory_ref = weakref(player.get_node("InventoryComponent"))
 	torpedo_launcher_ref = weakref(player.get_node("TorpedoLauncherComponent"))
+	InputMediator.interface_state_change_requested.connect(deactivate)
+	InputMediator.interface_state_changed.connect(activate)
 
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
 
-func activate():
+func activate(new_state: GameInputMediator.InterfaceState):
+	if new_state != GameInputMediator.InterfaceState.MissileLaunch:
+		return
 	var inventory: InventoryComponent = inventory_ref.get_ref()
 	if not inventory:
 		print("couldn't find any inventory to display!")
@@ -32,8 +36,11 @@ func activate():
 	show()
 
 
-func deactivate():
+func deactivate(new_state: GameInputMediator.InterfaceState):
+	if new_state == GameInputMediator.InterfaceState.MissileLaunch:
+		return
 	hide()
+
 
 ###############################################################################
 # Connections                                                                 #
