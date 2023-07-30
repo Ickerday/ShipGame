@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://yankn07wdfxs"]
+
+[ext_resource type="PackedScene" uid="uid://bxg4t1ssqwsn4" path="res://src/user_interface/bottom_panel/center_camera_control.tscn" id="1_u1u4t"]
+[ext_resource type="PackedScene" uid="uid://dbbsfpa0mmidy" path="res://src/user_interface/bottom_panel/time_scale_picker.tscn" id="2_d3ys6"]
+
+[node name="MiddlePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterCameraControl" parent="MarginContainer/VBoxContainer/CenterContainer" instance=ExtResource("1_u1u4t")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimeScalePicker" parent="MarginContainer/VBoxContainer/CenterContainer2/AspectRatioContainer" instance=ExtResource("2_d3ys6")]
+layout_mode = 2

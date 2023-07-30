@@ -8,11 +8,9 @@ class_name MainMenu
 
 var test_level = preload(\"res://src/main_game_loop/main_game_loop.tscn\")
 
-
 func start_test_level():
 	get_tree().root.add_child(test_level.instantiate())
 	queue_free()
-
 
 func exit_game():
 	get_tree().quit()

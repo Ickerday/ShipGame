@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw62oof8qm3nq"]
+
+[ext_resource type="Script" path="res://src/user_interface/utils/change_interface_state_button.gd" id="1_xkfyn"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_x7ujo"]
+
+[sub_resource type="GDScript" id="GDScript_orlhi"]
+script/source = "extends Button
+
+# Plunge Button
+
+###############################################################################
+# Builtin functions                                                           #
+###############################################################################
+
+func _ready():
+	InputMediator.pillage_the_inventory.connect(_on_pillage_available)
+	InputMediator.stop_the_plunge.connect(set_disabled.bind(true))
+
+
+###############################################################################
+# Public functions                                                            #
+###############################################################################
+
+###############################################################################
+# Connections                                                                 #
+###############################################################################
+
+func _on_pillage_available(_inventory: InventoryComponent):
+	set_disabled(false)
+
+
+###############################################################################
+# Private functions                                                           #
+###############################################################################
+"
+
+[node name="LeftPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -85.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MissilesButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Missiles"
+
+[node name="CargoButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Cargo"
+
+[node name="RulerButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Ruler"
+script = ExtResource("1_xkfyn")
+requested_state_change_on_click = 2
+
+[node name="PenButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Pen"
+script = ExtResource("1_xkfyn")
+requested_state_change_on_click = 3
+
+[node name="PlungeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x7ujo")
+text = "Plunge"
+script = SubResource("GDScript_orlhi")
