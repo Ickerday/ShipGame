@@ -33,7 +33,7 @@ size_flags_stretch_ratio = 4.0
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="BottomPanel" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_beqdx")]
 layout_mode = 2
@@ -55,6 +55,7 @@ size_flags_stretch_ratio = 0.2
 mouse_filter = 1
 
 [node name="MissileContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_7y6k8")]
+visible = false
 layout_mode = 1
 
 [node name="PlungeContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_rho07")]
