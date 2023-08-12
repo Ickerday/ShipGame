@@ -1,6 +1,6 @@
 extends Node
 
-# todo – maybe it would be better to use object/refcounted instead?
+# TODO: Maybe it would be better to use object/refcounted instead?
 
 class_name InventoryComponent
 
@@ -24,13 +24,13 @@ func add_item_to_inventory(item: InventoryItem):
 
 
 func transfer_to_other_inventory(other: InventoryComponent):
-	for _i in items.size():
+	for _idx in items.size():
 		var item = items.pop_back()
 		other.add_item_to_inventory(item)
 
 
 func clear():
-	for _i in items.size():
+	for _idx in items.size():
 		var item: InventoryItem = items.pop_back()
 		item.delete()
 

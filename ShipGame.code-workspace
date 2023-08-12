@@ -20,6 +20,9 @@
 			"titleBar.inactiveBackground": "#23403599",
 			"titleBar.inactiveForeground": "#e7e7e799"
 		},
-		"peacock.color": "#234035"
+		"peacock.color": "#234035",
+		"cSpell.enableFiletypes": [
+			"gdscript"
+		]
 	}
 }

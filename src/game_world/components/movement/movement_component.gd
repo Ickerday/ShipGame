@@ -1,99 +1,117 @@
 extends Node2D
+
 class_name MovementComponent
 
+# Exports
 ###############################################################################
-# EDITOR                                                                      #
-###############################################################################
-# for drawing lines, displaying extra data and whatnot
+
+# For drawing lines, displaying extra data and whatnot
 @export var debug := false
 
+@export var max_speed: float = 150.0
+@export var acceleration: float = 25
+
+@export var max_rotation: float = 90
+@export var rotation_speed: int = 1
+
 ###############################################################################
-# references                                                                  #
-###############################################################################
+# Class-related variables
 
 var parent: CharacterBody2D
 
-###############################################################################
-# exports                                                                     #
-###############################################################################
-
-@export var max_speed: float = 150.0
-@export var max_rotation: float = 2.5
-@export var acceleration: float = 25.0
-@export var rotation_speed: float = 0.5
-
-###############################################################################
-# class-related variables                                                     #
-###############################################################################
-
-var desired_speed: float = 0 : set = set_desired_speed
-var desired_rotation: float = 0 : set = set_desired_rotation
-var velocity: Vector2 = Vector2.ZERO
+var current_velocity: Vector2 = Vector2.ZERO
 var current_speed: float = 0.0
 
+var target_speed: float = 0:
+	set = set_target_speed
+
+
+func set_target_speed(new_speed: float):
+	target_speed = max(min(new_speed, max_speed), -max_speed)
+	target_speed_changed.emit(target_speed)
+
+
+var target_rotation: float = 0:
+	set = set_target_rotation
+
+
+func set_target_rotation(new_rotation: float):
+	target_rotation = max(min(new_rotation, max_rotation), -max_rotation)
+	target_rotation_changed.emit(target_rotation)
+
+
+var target_destination: Vector2 = Vector2.ZERO:
+	set = set_target_destination
+
+
+func set_target_destination(new_location: Vector2):
+	print(["set_target_destination", new_location])
+	target_destination = new_location
+
+
+###############################################################################
+# Signals and connections
+
 signal body_moved(velocity: Vector2)
-signal desired_speed_changed(new_speed: Vector2)
-signal desired_rotation_changed(new_rotation: Vector2)
+signal target_speed_changed(new_speed: float)
+signal target_rotation_changed(new_rotation: float)
+signal target_destination_changed(new_location: Vector2)
+
+
+func _on_target_speed_changed(new_speed: float, hard_set: bool = false):
+	if hard_set:
+		self.target_speed = new_speed
+	else:
+		self.target_speed += new_speed
+
+
+func _on_target_rotation_changed(new_rotation: float, hard_set: bool = false):
+	if hard_set:
+		self.target_rotation = new_rotation
+	else:
+		self.target_rotation += new_rotation
+
+
+func _on_target_destination_changed(_new_destination: Vector2) -> void:
+	# set_target_rotation(0) # calculate the angle from current X/Y to target X/Y
+	var _new_rotation = transform.get_origin()
+
 
 ###############################################################################
-# Setters                                                                     #
-###############################################################################
-
-
-func set_desired_speed(new_speed: float):
-	desired_speed = max(min(new_speed, max_speed), -max_speed)
-	desired_speed_changed.emit(desired_speed)
-
-
-func set_desired_rotation(new_rotation):
-	desired_rotation = max(min(new_rotation, max_rotation), -max_rotation)
-	desired_rotation_changed.emit(desired_rotation)
-
-
-###############################################################################
-# Builtin functions                                                           #
-###############################################################################
+# Built-in functions
 
 
 func _ready():
 	parent = get_parent()
+	InputMediator.target_destination_changed.connect(set_target_destination)
 
 
 func _physics_process(delta):
-	if parent:
+	if not parent:
+		return
+
+	if target_destination == Vector2.ZERO:
 		parent.set_velocity(_calculate_new_velocity(delta))
-		parent.rotation += desired_rotation * rotation_speed * delta
+		parent.rotation += target_rotation * rotation_speed * delta
 		parent.move_and_slide()
 		body_moved.emit(parent.velocity)
-
-
-###############################################################################
-# Connections                                                                 #
-###############################################################################
-
-
-func at_new_desired_speed(new_speed: float, hard_set: bool = false):
-	if hard_set:
-		self.desired_speed = new_speed
 	else:
-		self.desired_speed += new_speed
+		# ! TODO: Move towards target_destination
+		# velocity  position.direction_to(target) * speed
+		# look_at(target)
+		# if position.distance_to(target) > 10:
+		#     move_and_slide()
+		pass
 
-
-func at_new_desired_rotation(new_rotation: float, hard_set: bool = false):
-	if hard_set:
-		self.desired_rotation = new_rotation
-	else:
-		self.desired_rotation += new_rotation
 
 ###############################################################################
-# Private functions                                                           #
-###############################################################################
+# Private functions
+
 
 func _calculate_new_velocity(_delta: float) -> Vector2:
-	current_speed = min(lerp(current_speed, desired_speed, acceleration), max_speed)
+	current_speed = min(lerp(current_speed, target_speed, acceleration), max_speed)
 	var new_velocity = -parent.transform.y * current_speed
 	return new_velocity
 
 ###############################################################################
-# Public functions                                                            #
-###############################################################################
+# Public functions

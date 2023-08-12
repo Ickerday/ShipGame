@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://domwnq6c2aplw"]
 
-[ext_resource type="Script" path="res://src/user_interface/context_menu/missile_context_menu/missile_context_menu.gd" id="1_5qscv"]
+[ext_resource type="Script" path="res://src/user_interface/context_menu/missile/missile_context_menu.gd" id="1_5qscv"]
 
 [node name="MissileContextMenu" type="Control"]
 layout_mode = 3

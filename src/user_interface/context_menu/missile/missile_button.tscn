@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cw3ook2e8cx2f"]
 
-[ext_resource type="Script" path="res://src/user_interface/context_menu/missile_context_menu/missile_button.gd" id="1_nnwqj"]
+[ext_resource type="Script" path="res://src/user_interface/context_menu/missile/missile_button.gd" id="1_nnwqj"]
 
 [node name="MissileButton" type="Control"]
 custom_minimum_size = Vector2(0, 50)

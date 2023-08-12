@@ -17,18 +17,18 @@ modulate = Color(0.192157, 0.619608, 0.215686, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_q8qnl")
 
-[node name="PlungeArea" type="Area2D" parent="."]
+[node name="PillageArea" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlungeArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PillageArea"]
 shape = SubResource("CircleShape2D_7a8cn")
 
-[node name="TimeToPlunge" type="Timer" parent="."]
+[node name="TimeToPillage" type="Timer" parent="."]
 wait_time = 45.0
 one_shot = true
 autostart = true
 
-[connection signal="area_entered" from="PlungeArea" to="." method="_on_plunge_area_area_entered"]
-[connection signal="area_exited" from="PlungeArea" to="." method="_on_plunge_area_area_exited"]
-[connection signal="timeout" from="TimeToPlunge" to="." method="_on_time_to_plunge_timeout"]
+[connection signal="area_entered" from="PillageArea" to="." method="_on_pillage_area_area_entered"]
+[connection signal="area_exited" from="PillageArea" to="." method="_on_pillage_area_area_exited"]
+[connection signal="timeout" from="TimeToPillage" to="." method="_on_time_to_pillage_timeout"]

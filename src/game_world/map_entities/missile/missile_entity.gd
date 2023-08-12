@@ -14,9 +14,11 @@ var starting_position: Vector2
 # Builtin functions                                                           #
 ###############################################################################
 
+
 func _ready():
 	top_level = true
 	starting_position = global_position
+
 
 func _physics_process(_delta):
 	await movement_component.body_moved
@@ -31,10 +33,12 @@ func _physics_process(_delta):
 			if damage_component:
 				damage_component.impact(damage)
 			queue_free()
-	
+
+
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
+
 
 func from_item(item: InventoryItem):
 	assert(item.item_data is MissileResource)
@@ -44,9 +48,9 @@ func from_item(item: InventoryItem):
 	sprite.texture = item_data.map_sprite
 	collision_shape.shape = item_data.collision_shape
 	movement_component.max_speed = item_data.max_speed
-	movement_component.desired_speed = item_data.max_speed
+	movement_component.target_speed = item_data.max_speed
 	movement_component.acceleration = item_data.acceleration
-	
+
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################

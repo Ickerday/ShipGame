@@ -17,15 +17,18 @@ func _ready():
 func _process(_delta):
 	if !torpedo_ref:
 		return
+
 	queue_redraw()
 
 
 func _draw():
 	if !torpedo_ref:
 		return
+
 	var torpedo: InventoryItem = torpedo_ref.get_ref()
 	if !torpedo:
 		return
+
 	draw_arc(Vector2.ZERO, torpedo.item_data.missile_range, 0, TAU, 64, Color.RED, 5.0, true)
 	var mouse_position = get_local_mouse_position()
 	if mouse_position.length() <= torpedo.item_data.missile_range:
@@ -41,6 +44,7 @@ func _input(event):
 # Public functions                                                            #
 ###############################################################################
 
+
 func load_torpedo(torpedo: InventoryItem):
 	torpedo_ref = weakref(torpedo)
 
@@ -48,6 +52,7 @@ func load_torpedo(torpedo: InventoryItem):
 func unload_torpedo(op_args: Variant = null):
 	if op_args == GameInputMediator.InterfaceState.MissileLaunch:
 		return
+
 	torpedo_ref = null
 	queue_redraw()
 
@@ -62,10 +67,11 @@ func unload_torpedo(op_args: Variant = null):
 
 
 func _create_and_fire_new_missile(missile: InventoryItem):
-	# todo – maybe use InputMediator to manage this relationship
+	# TODO – Maybe use InputMediator to manage this relationship
 	var game_world = get_tree().get_nodes_in_group("GameWorld")
 	if !game_world:
 		return
+
 	game_world[0].create_new_missile(missile, get_parent(), get_global_mouse_position())
 	missile.delete()
 
@@ -73,9 +79,11 @@ func _create_and_fire_new_missile(missile: InventoryItem):
 func _fire_torpedo():
 	if !torpedo_ref:
 		return
+
 	var torpedo = torpedo_ref.get_ref()
 	if !torpedo:
 		unload_torpedo()
 		return
+
 	_create_and_fire_new_missile(torpedo)
 	unload_torpedo()

@@ -13,15 +13,15 @@
 [sub_resource type="GDScript" id="GDScript_orlhi"]
 script/source = "extends Button
 
-# Plunge Button
+# Pillage Button
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
 
 func _ready():
-	InputMediator.pillage_the_inventory.connect(_on_pillage_available)
-	InputMediator.stop_the_plunge.connect(set_disabled.bind(true))
+	InputMediator.pillage_inventory_started.connect(_on_pillage_available)
+	InputMediator.pillage_inventory_stopped.connect(set_disabled.bind(true))
 
 
 ###############################################################################
@@ -129,12 +129,12 @@ text = "Pen"
 script = ExtResource("1_jtr8d")
 requested_state_change_on_click = 3
 
-[node name="PlungeButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
+[node name="PillageButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 disabled = true
 toggle_mode = true
 button_group = SubResource("ButtonGroup_x7ujo")
-text = "Plunge"
+text = "Pillage"
 script = SubResource("GDScript_orlhi")
 
 [node name="MiddlePanel" type="Control" parent="MarginContainer/HBoxContainer"]

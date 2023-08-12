@@ -19,7 +19,7 @@ signal body_left_sight(visibility_component: VisibilityComponent)
 # Public functions                                                            #
 ###############################################################################
 
-func spot_the_body(body: Node) -> void:
+func spot_body(body: Node) -> void:
 	# emitted when the new body is in sight – usually tells the body to uncover itself.
 	if body.has_node("VisibilityComponent"):
 		var visibility_component: VisibilityComponent = body.get_node("VisibilityComponent")
@@ -28,7 +28,7 @@ func spot_the_body(body: Node) -> void:
 		body_spotted.emit(visibility_component)
 
 
-func forget_the_body(body: Node) -> void:
+func forget_body(body: Node) -> void:
 	# emitted when the new body leaves the sight – usually tells the body to cover itself.
 	if body.has_node("VisibilityComponent"):
 		var visibility_component: VisibilityComponent = body.get_node("VisibilityComponent")

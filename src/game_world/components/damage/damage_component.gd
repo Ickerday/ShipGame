@@ -22,7 +22,7 @@ func _ready():
 func impact(damage: float):
 	current_hp -= damage
 	entity_damaged.emit()
-	
+
 	if current_hp <= 0:
 		entity_killed.emit()
 
