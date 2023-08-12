@@ -4,7 +4,7 @@
 script/source = "extends VSlider
 
 ###############################################################################
-# Builtin functions                                                           #
+# Built-in functions                                                          #
 ###############################################################################
 
 func _ready():
@@ -17,10 +17,10 @@ func _ready():
 		return
 
 	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
-
 	if not player_movement_component:
 		return
 
+	value_changed.emit(InputMediator.target_rotation_changed)
 	player_movement_component.target_rotation_changed.connect(set_value)
 
 
@@ -31,10 +31,6 @@ func _ready():
 ###############################################################################
 # Connections                                                                 #
 ###############################################################################
-
-func _on_drag_ended(new_value_changed: bool):
-	if new_value_changed:
-		InputMediator.target_rotation_changed.emit(value, true)
 
 ###############################################################################
 # Private functions                                                           #
@@ -97,8 +93,8 @@ script/source = "extends Button
 ###############################################################################
 
 func _on_pressed():
-	InputMediator.new_target_rotation.emit(0, true)
-	
+	InputMediator.target_rotation_changed.emit(0, true)
+
 
 ###############################################################################
 # Private functions                                                           #

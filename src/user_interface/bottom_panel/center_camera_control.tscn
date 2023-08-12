@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxg4t1ssqwsn4"]
 
-[ext_resource type="Texture2D" uid="uid://boit0n21mqv0r" path="res://assets/images/ui_camera_center_button.png" id="1_24brb"]
+[ext_resource type="Texture2D" uid="uid://7cjudaxhlgl2" path="res://assets/svg/fontawesome/solid/camera-retro.svg" id="1_v71my"]
 
 [sub_resource type="GDScript" id="GDScript_0yi8f"]
-script/source = "extends TextureButton
+script/source = "extends CheckBox
 
-
-func _on_toggled(button_pressed: bool):
-	InputMediator.center_camera_changed.emit(button_pressed)
+func _on_toggled(new_is_button_pressed: bool):
+	InputMediator.camera_tracks_player_changed.emit(new_is_button_pressed)
 "
 
 [node name="CenterCameraControl" type="Control"]
@@ -16,7 +15,7 @@ anchors_preset = 0
 size_flags_vertical = 3
 metadata/_edit_group_ = true
 
-[node name="CenterCameraButton" type="TextureButton" parent="."]
+[node name="CenterCameraButton" type="CheckBox" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,11 +28,8 @@ offset_right = 50.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("1_24brb")
-texture_pressed = ExtResource("1_24brb")
-texture_hover = ExtResource("1_24brb")
-ignore_texture_size = true
-stretch_mode = 5
+icon = ExtResource("1_v71my")
+expand_icon = true
 script = SubResource("GDScript_0yi8f")
 
 [connection signal="toggled" from="CenterCameraButton" to="CenterCameraButton" method="_on_toggled"]

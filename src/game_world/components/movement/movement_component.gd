@@ -18,10 +18,11 @@ var parent: CharacterBody2D
 ###############################################################################
 
 @export var max_speed: float = 150.0
-@export var max_rotation: float = 2.5
+@export var acceleration: float = 25
 
-@export var acceleration: float = 25.0
-@export var rotation_speed: float = 0.5
+@export var max_rotation: float = 90
+@export var rotation_speed: int = 1
+
 
 ###############################################################################
 # Class-related variables                                                     #
@@ -38,8 +39,8 @@ var target_destination: Vector2 = Vector2.ZERO:
 	set = set_target_destination
 
 signal body_moved(velocity: Vector2)
-signal target_speed_changed(new_speed: Vector2)
-signal target_rotation_changed(new_rotation: Vector2)
+signal target_speed_changed(new_speed: float)
+signal target_rotation_changed(new_rotation: float)
 signal target_destination_changed(new_location: Vector2)
 
 ###############################################################################
@@ -75,13 +76,13 @@ func _physics_process(delta):
 	if not parent:
 		return
 
-	if target_destination != Vector2.ZERO:
+	if target_destination == Vector2.ZERO:
 		parent.set_velocity(_calculate_new_velocity(delta))
 		parent.rotation += target_rotation * rotation_speed * delta
 		parent.move_and_slide()
 		body_moved.emit(parent.velocity)
 	else:
-		# ! TODO
+		# ! TODO: Move towards target_destination
 		pass
 
 
@@ -107,7 +108,7 @@ func _on_target_rotation_changed(new_rotation: float, hard_set: bool = false):
 func _on_target_destination_changed(_new_destination: Vector2) -> void:
 	# set_target_rotation(0) # calculate the angle from current X/Y to target X/Y
 	var _new_rotation = transform.get_origin()
-	pass
+
 
 
 ###############################################################################

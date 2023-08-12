@@ -1,8 +1,7 @@
-# A Node responsible for managing all the connections
-# between different nodes as well as managing input/output
-
 extends Node
 
+## A Node responsible for managing all the connections
+## between different nodes as well as managing input/output
 class_name GameInputMediator
 
 ###############################################################################
@@ -14,6 +13,7 @@ var world2D: World2D
 var player: WeakRef
 
 var user_interface: WeakRef
+enum InterfaceState { FreeLook, MissileLaunch, UseRuler, UsePen }
 var current_interface_state := InterfaceState.FreeLook
 
 ###############################################################################
@@ -23,7 +23,7 @@ var current_interface_state := InterfaceState.FreeLook
 signal interface_state_change_requested(new_state: InterfaceState)
 signal interface_state_changed(new_state: InterfaceState)
 
-signal center_camera_changed(new_center_camera: bool)
+signal camera_tracks_player_changed(new_camera_tracks_player: bool)
 
 signal target_speed_changed(new_speed: Vector2, hard_set: bool)
 signal target_rotation_changed(new_rotation: Vector2, hard_set: bool)
@@ -32,8 +32,6 @@ signal entity_destroyed(entity: Variant)
 
 signal pillage_inventory_started(inventory: InventoryComponent)
 signal pillage_inventory_stopped
-
-enum InterfaceState { FreeLook, MissileLaunch, UseRuler, UsePen }
 
 ###############################################################################
 # Builtin functions                                                           #
@@ -64,6 +62,7 @@ func register_world(world: World2D):
 
 func register_player(new_player: CharacterBody2D):
 	player = weakref(new_player)
+
 	var player_movement_component: MovementComponent = new_player.get_node("MovementComponent")
 	target_speed_changed.connect(player_movement_component._on_target_speed_changed)
 	target_rotation_changed.connect(player_movement_component._on_target_rotation_changed)
@@ -79,6 +78,9 @@ func register_player(new_player: CharacterBody2D):
 
 
 func _check_for_actions():
+	if Input.is_action_just_pressed("ui_space"):
+		camera_tracks_player_changed.emit()
+
 	var target_speed_change: float = (
 		0.5
 		* (

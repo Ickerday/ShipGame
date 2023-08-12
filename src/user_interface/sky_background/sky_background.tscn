@@ -1,9 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpj1mwvpsj7gm"]
-
-[ext_resource type="Script" path="res://src/user_interface/sky_background/sky_background.gd" id="1_1skf1"]
+[gd_scene format=3 uid="uid://dpj1mwvpsj7gm"]
 
 [node name="SkyBackground" type="Node2D"]
-script = ExtResource("1_1skf1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

@@ -7,10 +7,7 @@ var item_id: int
 var item_type: ItemType
 var item_data: BaseItemResource
 
-enum ItemType {
-	Loot,
-	Missile
-}
+enum ItemType { Loot, Missile }
 
 signal item_deleted(item: InventoryItem)
 
@@ -30,6 +27,7 @@ func _init(new_item_data):
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
+
 
 func delete():
 	item_deleted.emit(self)
