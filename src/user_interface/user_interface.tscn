@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/user_interface/user_interface.gd" id="1_4kdl8"]
 [ext_resource type="PackedScene" uid="uid://b2fm08ytym82w" path="res://src/user_interface/bottom_panel/bottom_panel.tscn" id="3_beqdx"]
-[ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/user_interface/context_menu/missile_context_menu/missile_context_menu.tscn" id="4_7y6k8"]
-[ext_resource type="PackedScene" uid="uid://ycrkeahbcshb" path="res://src/user_interface/context_menu/plunge_context_menu/plunge_context_menu.tscn" id="4_rho07"]
+[ext_resource type="PackedScene" uid="uid://domwnq6c2aplw" path="res://src/user_interface/context_menu/missile/missile_context_menu.tscn" id="4_7y6k8"]
+[ext_resource type="PackedScene" uid="uid://ycrkeahbcshb" path="res://src/user_interface/context_menu/pillage/pillage_context_menu.tscn" id="4_rho07"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -58,6 +58,6 @@ mouse_filter = 1
 visible = false
 layout_mode = 1
 
-[node name="PlungeContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_rho07")]
+[node name="PillageContextMenu" parent="HBoxContainer/ContextBoard" instance=ExtResource("4_rho07")]
 visible = false
 layout_mode = 1

@@ -4,7 +4,7 @@ class_name MissileContextMenu
 
 var inventory_ref: WeakRef
 var torpedo_launcher_ref: WeakRef
-var missile_button_scene := preload("res://src/user_interface/context_menu/missile_context_menu/missile_button.tscn")
+var missile_button_scene := preload("res://src/user_interface/context_menu/missile/missile_button.tscn")
 @onready var missile_container := $VBoxContainer
 
 ###############################################################################
