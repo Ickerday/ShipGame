@@ -32,9 +32,9 @@ func _ready():
 # Connections                                                                 #
 ###############################################################################
 
-func _on_drag_ended(new_value_changed):
+func _on_drag_ended(new_value_changed: bool):
 	if new_value_changed:
-		InputMediator.new_target_rotation.emit(value, true)
+		InputMediator.target_rotation_changed.emit(value, true)
 
 ###############################################################################
 # Private functions                                                           #

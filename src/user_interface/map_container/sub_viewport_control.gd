@@ -26,11 +26,13 @@ func _ready():
 #	viewport.world_2d = InputMediator.world2D
 	player_ref = InputMediator.player
 #	viewport.handle_input_locally = true
+	InputMediator.center_camera_changed.connect()
 
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_space"):
 		track_player_mode = not track_player_mode
+
 	if track_player_mode:
 		var player: CharacterBody2D = player_ref.get_ref()
 		if player:

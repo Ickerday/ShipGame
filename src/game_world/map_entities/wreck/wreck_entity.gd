@@ -18,7 +18,7 @@ class_name Wreck
 
 
 func _on_pillage_area_area_entered(_area):
-	InputMediator.pillage_inventory.emit(inventory)
+	InputMediator.pillage_inventory_started.emit(inventory)
 
 
 func _on_pillage_area_area_exited(_area):

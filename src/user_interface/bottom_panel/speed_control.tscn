@@ -4,7 +4,7 @@
 script/source = "extends VSlider
 
 ###############################################################################
-# Builtin functions                                                           #
+# Built-in functions                                                          #
 ###############################################################################
 
 func _ready():
@@ -17,7 +17,6 @@ func _ready():
 		return
 
 	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
-
 	if not player_movement_component:
 		return
 
@@ -30,11 +29,11 @@ func _ready():
 
 ###############################################################################
 # Connections                                                                 #
-###############################################################################
+###################################################################ž############
 
-func _on_drag_ended(new_value_changed):
+func _on_drag_ended(new_value_changed: bool):
 	if new_value_changed:
-		InputMediator.new_target_speed.emit(value, true)
+		InputMediator.target_speed_changed.emit(value, true)
 
 ###############################################################################
 # Private functions                                                           #

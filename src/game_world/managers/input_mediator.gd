@@ -1,26 +1,37 @@
 # A Node responsible for managing all the connections
-# between different nodes and managing input/output
+# between different nodes as well as managing input/output
 
 extends Node
 
 class_name GameInputMediator
 
+###############################################################################
+# References                                                                  #
+###############################################################################
+
 var game_world: Node2D
 var world2D: World2D
 var player: WeakRef
+
 var user_interface: WeakRef
 var current_interface_state := InterfaceState.FreeLook
 
-signal new_target_speed(new_speed: Vector2, hard_set: bool)
-signal new_target_rotation(new_rotation: Vector2, hard_set: bool)
+###############################################################################
+# Signals                                                                     #
+###############################################################################
 
 signal interface_state_change_requested(new_state: InterfaceState)
 signal interface_state_changed(new_state: InterfaceState)
 
+signal center_camera_changed(new_center_camera: bool)
+
+signal target_speed_changed(new_speed: Vector2, hard_set: bool)
+signal target_rotation_changed(new_rotation: Vector2, hard_set: bool)
+
 signal entity_destroyed(entity: Variant)
 
-signal pillage_inventory(inventory: InventoryComponent)
-signal stop_pillage
+signal pillage_inventory_started(inventory: InventoryComponent)
+signal pillage_inventory_stopped
 
 enum InterfaceState { FreeLook, MissileLaunch, UseRuler, UsePen }
 
@@ -54,8 +65,8 @@ func register_world(world: World2D):
 func register_player(new_player: CharacterBody2D):
 	player = weakref(new_player)
 	var player_movement_component: MovementComponent = new_player.get_node("MovementComponent")
-	new_target_speed.connect(player_movement_component.at_new_target_speed)
-	new_target_rotation.connect(player_movement_component.at_new_target_rotation)
+	target_speed_changed.connect(player_movement_component._on_target_speed_changed)
+	target_rotation_changed.connect(player_movement_component._on_target_rotation_changed)
 
 
 ###############################################################################
@@ -76,7 +87,7 @@ func _check_for_actions():
 		)
 	)
 	if !is_zero_approx(target_speed_change):
-		new_target_speed.emit(target_speed_change, false)
+		target_speed_changed.emit(target_speed_change, false)
 
 	var target_rotation_change: float = (
 		0.1
@@ -86,4 +97,4 @@ func _check_for_actions():
 		)
 	)
 	if !is_zero_approx(target_rotation_change):
-		new_target_rotation.emit(target_rotation_change, false)
+		target_rotation_changed.emit(target_rotation_change, false)

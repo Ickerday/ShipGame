@@ -17,7 +17,6 @@ var parent: CharacterBody2D
 # Exports                                                                     #
 ###############################################################################
 
-#
 @export var max_speed: float = 150.0
 @export var max_rotation: float = 2.5
 
@@ -28,16 +27,15 @@ var parent: CharacterBody2D
 # Class-related variables                                                     #
 ###############################################################################
 
+var current_velocity: Vector2 = Vector2.ZERO
+var current_speed: float = 0.0
+
 var target_speed: float = 0:
 	set = set_target_speed
 var target_rotation: float = 0:
 	set = set_target_rotation
-
 var target_destination: Vector2 = Vector2.ZERO:
 	set = set_target_destination
-
-var velocity: Vector2 = Vector2.ZERO
-var current_speed: float = 0.0
 
 signal body_moved(velocity: Vector2)
 signal target_speed_changed(new_speed: Vector2)
@@ -106,8 +104,10 @@ func _on_target_rotation_changed(new_rotation: float, hard_set: bool = false):
 		self.target_rotation += new_rotation
 
 
-func _on_target_destination_changed(new_location) -> void:
-	pass  # Replace with function body.
+func _on_target_destination_changed(_new_destination: Vector2) -> void:
+	# set_target_rotation(0) # calculate the angle from current X/Y to target X/Y
+	var _new_rotation = transform.get_origin()
+	pass
 
 
 ###############################################################################

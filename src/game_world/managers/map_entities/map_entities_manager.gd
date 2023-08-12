@@ -12,6 +12,7 @@ var label_to_add: Node2D
 # Builtin functions                                                           #
 ###############################################################################
 
+
 func _ready():
 	await get_tree().process_frame
 	connect_player_vision_and_hearing()
@@ -25,9 +26,11 @@ func _unhandled_input(event):
 			label_to_add = null
 			InputMediator.request_interface_state_change(GameInputMediator.InterfaceState.FreeLook)
 
+
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
+
 
 func add_new_label():
 	pass
@@ -65,11 +68,13 @@ func remove_visual_marker(visibility_component: VisibilityComponent):
 func remove_label_to_add():
 	label_to_add = null
 
+
 func queue_label_to_add():
 	if !label_to_add:
 		return
 	label_to_add.queue_free()
 	label_to_add = null
+
 
 ###############################################################################
 # Connections                                                                 #

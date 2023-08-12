@@ -20,8 +20,8 @@ script/source = "extends Button
 ###############################################################################
 
 func _ready():
-	InputMediator.pillage_inventory.connect(_on_pillage_available)
-	InputMediator.stop_pillage.connect(set_disabled.bind(true))
+	InputMediator.pillage_inventory_started.connect(_on_pillage_available)
+	InputMediator.pillage_inventory_stopped.connect(set_disabled.bind(true))
 
 
 ###############################################################################
