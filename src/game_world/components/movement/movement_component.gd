@@ -1,21 +1,12 @@
 extends Node2D
+
 class_name MovementComponent
 
+# Exports
 ###############################################################################
-# EDITOR                                                                      #
-###############################################################################
+
 # For drawing lines, displaying extra data and whatnot
 @export var debug := false
-
-###############################################################################
-# References                                                                  #
-###############################################################################
-
-var parent: CharacterBody2D
-
-###############################################################################
-# Exports                                                                     #
-###############################################################################
 
 @export var max_speed: float = 150.0
 @export var acceleration: float = 25
@@ -23,29 +14,16 @@ var parent: CharacterBody2D
 @export var max_rotation: float = 90
 @export var rotation_speed: int = 1
 
+###############################################################################
+# Class-related variables
 
-###############################################################################
-# Class-related variables                                                     #
-###############################################################################
+var parent: CharacterBody2D
 
 var current_velocity: Vector2 = Vector2.ZERO
 var current_speed: float = 0.0
 
 var target_speed: float = 0:
 	set = set_target_speed
-var target_rotation: float = 0:
-	set = set_target_rotation
-var target_destination: Vector2 = Vector2.ZERO:
-	set = set_target_destination
-
-signal body_moved(velocity: Vector2)
-signal target_speed_changed(new_speed: float)
-signal target_rotation_changed(new_rotation: float)
-signal target_destination_changed(new_location: Vector2)
-
-###############################################################################
-# Setters                                                                     #
-###############################################################################
 
 
 func set_target_speed(new_speed: float):
@@ -53,42 +31,31 @@ func set_target_speed(new_speed: float):
 	target_speed_changed.emit(target_speed)
 
 
+var target_rotation: float = 0:
+	set = set_target_rotation
+
+
 func set_target_rotation(new_rotation: float):
 	target_rotation = max(min(new_rotation, max_rotation), -max_rotation)
 	target_rotation_changed.emit(target_rotation)
 
 
+var target_destination: Vector2 = Vector2.ZERO:
+	set = set_target_destination
+
+
 func set_target_destination(new_location: Vector2):
+	print(["set_target_destination", new_location])
 	target_destination = new_location
-	target_destination_changed.emit(target_destination)
 
 
 ###############################################################################
-# Built-in functions                                                          #
-###############################################################################
+# Signals and connections
 
-
-func _ready():
-	parent = get_parent()
-
-
-func _physics_process(delta):
-	if not parent:
-		return
-
-	if target_destination == Vector2.ZERO:
-		parent.set_velocity(_calculate_new_velocity(delta))
-		parent.rotation += target_rotation * rotation_speed * delta
-		parent.move_and_slide()
-		body_moved.emit(parent.velocity)
-	else:
-		# ! TODO: Move towards target_destination
-		pass
-
-
-###############################################################################
-# Connections                                                                 #
-###############################################################################
+signal body_moved(velocity: Vector2)
+signal target_speed_changed(new_speed: float)
+signal target_rotation_changed(new_rotation: float)
+signal target_destination_changed(new_location: Vector2)
 
 
 func _on_target_speed_changed(new_speed: float, hard_set: bool = false):
@@ -110,10 +77,35 @@ func _on_target_destination_changed(_new_destination: Vector2) -> void:
 	var _new_rotation = transform.get_origin()
 
 
+###############################################################################
+# Built-in functions
+
+
+func _ready():
+	parent = get_parent()
+	InputMediator.target_destination_changed.connect(set_target_destination)
+
+
+func _physics_process(delta):
+	if not parent:
+		return
+
+	if target_destination == Vector2.ZERO:
+		parent.set_velocity(_calculate_new_velocity(delta))
+		parent.rotation += target_rotation * rotation_speed * delta
+		parent.move_and_slide()
+		body_moved.emit(parent.velocity)
+	else:
+		# ! TODO: Move towards target_destination
+		# velocity  position.direction_to(target) * speed
+		# look_at(target)
+		# if position.distance_to(target) > 10:
+		#     move_and_slide()
+		pass
+
 
 ###############################################################################
-# Private functions                                                           #
-###############################################################################
+# Private functions
 
 
 func _calculate_new_velocity(_delta: float) -> Vector2:
@@ -122,5 +114,4 @@ func _calculate_new_velocity(_delta: float) -> Vector2:
 	return new_velocity
 
 ###############################################################################
-# Public functions                                                            #
-###############################################################################
+# Public functions

@@ -17,7 +17,7 @@ script/source = "extends Node2D
 # Connections                                                                 #
 ###############################################################################
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
 		get_parent().queue_free()
 

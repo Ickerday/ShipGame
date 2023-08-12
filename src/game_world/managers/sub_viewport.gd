@@ -63,6 +63,7 @@ func _process(delta):
 
 
 func _unhandled_input(event):
+	# Handle manual camera movement
 	if (
 		event is InputEventMouseMotion
 		and event.button_mask == MOUSE_BUTTON_MASK_RIGHT
@@ -74,9 +75,16 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton:
+		# Handle "go here"
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			InputMediator.target_destination_changed.emit(get_global_mouse_position())
+
+		# Handle camera zoom
+		# Zoom in
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			requested_camera_zoom = max(requested_camera_zoom - camera_zoom_increment, min_zoom)
 			get_viewport().set_input_as_handled()
+		# Zoom out
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			requested_camera_zoom = min(requested_camera_zoom + camera_zoom_increment, max_zoom)
 			get_viewport().set_input_as_handled()
@@ -99,7 +107,6 @@ func _unhandled_input(event):
 
 
 func _track_player():
-	print("_track_player sub_viewport_control")
 	var player: CharacterBody2D = player_ref.get_ref()
 	if player:
 		requested_camera_movement = player.global_position - camera.global_position
