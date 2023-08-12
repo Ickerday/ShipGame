@@ -34,12 +34,10 @@ func set_camera_tracks_player(new_camera_tracks_player: bool):
 
 func _ready():
 	await get_tree().process_frame
-#	viewport.world_2d = InputMediator.world2D
+	#	viewport.world_2d = InputMediator.world2D
 	player_ref = InputMediator.player
-
-
-#	viewport.handle_input_locally = true
-#	InputMediator.camera_tracks_player_changed.connect(set_camera_tracks_player)
+	#	viewport.handle_input_locally = true
+	InputMediator.camera_tracks_player_changed.connect(set_camera_tracks_player)
 
 
 func _physics_process(_delta):
