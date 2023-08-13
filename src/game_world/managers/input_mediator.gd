@@ -23,7 +23,7 @@ var current_interface_state := InterfaceState.FreeLook
 signal interface_state_change_requested(new_state: InterfaceState)
 signal interface_state_changed(new_state: InterfaceState)
 
-signal camera_tracks_player_changed(new_camera_tracks_player: bool)
+signal camera_tracks_player_changed
 
 signal target_speed_changed(new_speed: Vector2, hard_set: bool)
 signal target_rotation_changed(new_rotation: Vector2, hard_set: bool)

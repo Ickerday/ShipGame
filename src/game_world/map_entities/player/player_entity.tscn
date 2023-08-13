@@ -4,31 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://biqdy1dg208l7" path="res://src/game_world/components/inventory/inventory_component.tscn" id="1_8gjvf"]
 [ext_resource type="PackedScene" uid="uid://68u4fmvsowcu" path="res://src/game_world/components/torpedo_launcher/torpedo_launcher_component.tscn" id="1_frael"]
 [ext_resource type="PackedScene" uid="uid://c1d1bav7mnwmw" path="res://src/game_world/map_entities/player/player_visual_sensor.tscn" id="1_hujpf"]
+[ext_resource type="Script" path="res://src/game_world/map_entities/player/player_entity.gd" id="1_lwend"]
 [ext_resource type="Texture2D" uid="uid://dpjaihg6rvgij" path="res://assets/images/yacht1.png" id="3_0pr2r"]
-
-[sub_resource type="GDScript" id="GDScript_ca72f"]
-script/source = "extends CharacterBody2D
-
-###############################################################################
-# Builtin functions                                                           #
-###############################################################################
-
-func _ready():
-	InputMediator.register_player(self)
-
-###############################################################################
-# Public functions                                                            #
-###############################################################################
-
-
-###############################################################################
-# Connections                                                                 #
-###############################################################################
-
-###############################################################################
-# Private functions                                                           #
-###############################################################################
-"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_crn4l"]
 radius = 32.0
@@ -60,7 +37,7 @@ radius = 64.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
-script = SubResource("GDScript_ca72f")
+script = ExtResource("1_lwend")
 
 [node name="TorpedoLauncherComponent" parent="." instance=ExtResource("1_frael")]
 
@@ -72,7 +49,6 @@ shape = SubResource("CircleShape2D_crn4l")
 [node name="MovementComponent" parent="." instance=ExtResource("1_3ue71")]
 max_speed = 50.0
 acceleration = 0.025
-rotation_speed = 0.1
 
 [node name="VisionComponent" parent="." instance=ExtResource("1_hujpf")]
 

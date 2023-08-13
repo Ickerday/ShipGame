@@ -7,22 +7,6 @@ script/source = "extends VSlider
 # Built-in functions                                                          #
 ###############################################################################
 
-func _ready():
-	await get_tree().process_frame
-	if not InputMediator.player:
-		return
-
-	var player = InputMediator.player.get_ref()
-	if not player:
-		return
-
-	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
-	if not player_movement_component:
-		return
-
-	player_movement_component.target_speed_changed.connect(set_value)
-
-
 ###############################################################################
 # Public functions                                                            #
 ###############################################################################
@@ -31,9 +15,8 @@ func _ready():
 # Connections                                                                 #
 ###################################################################ž############
 
-func _on_drag_ended(new_value_changed: bool):
-	if new_value_changed:
-		InputMediator.target_speed_changed.emit(value, true)
+func _on_value_changed(new_value: float):
+	PlayerEventBus.target_speed_changed.emit(new_value, true)
 
 ###############################################################################
 # Private functions                                                           #
@@ -52,11 +35,11 @@ func _ready():
 	if not InputMediator.player:
 		return
 
-	var player = InputMediator.player.get_ref()
+	var player: PlayerEntity = InputMediator.player.get_ref()
 	if not player:
 		return
 
-	var player_movement_component: MovementComponent = player.get_node(\"MovementComponent\")
+	var player_movement_component: MovementComponent = player.movement_component
 	if not player_movement_component:
 		return
 
@@ -95,7 +78,7 @@ script/source = "extends Button
 ###############################################################################
 
 func _on_pressed():
-	InputMediator.new_target_speed.emit(0, true)
+	PlayerEventBus.target_speed_changed.emit(0.0, true)
 
 ###############################################################################
 # Private functions                                                           #
@@ -130,7 +113,8 @@ size_flags_stretch_ratio = 8.0
 min_value = -50.0
 max_value = 50.0
 step = 10.0
-tick_count = 10
+rounded = true
+tick_count = 11
 ticks_on_borders = true
 script = SubResource("GDScript_y7ol1")
 
@@ -145,5 +129,5 @@ layout_mode = 2
 text = "Full Stop"
 script = SubResource("GDScript_yis1m")
 
-[connection signal="drag_ended" from="VBoxContainer/SpeedSlider" to="VBoxContainer/SpeedSlider" method="_on_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/SpeedSlider" to="VBoxContainer/SpeedSlider" method="_on_value_changed"]
 [connection signal="pressed" from="VBoxContainer/FullStopButton" to="VBoxContainer/FullStopButton" method="_on_pressed"]

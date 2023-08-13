@@ -158,7 +158,6 @@ layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CenterCameraControl" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer/CenterContainer" instance=ExtResource("4_8t434")]
@@ -167,7 +166,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 6.0
+size_flags_stretch_ratio = 0.31
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/HBoxContainer/MiddlePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2

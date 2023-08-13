@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu5suy5vgbf7v"]
+[gd_scene load_steps=3 format=3 uid="uid://cu5suy5vgbf7v"]
 
+[ext_resource type="Script" path="res://src/game_world/managers/sub_viewport.gd" id="1_481kj"]
 [ext_resource type="PackedScene" uid="uid://bfhqxtlvo2f3h" path="res://src/game_world/game_world.tscn" id="2_yg1mp"]
 
 [node name="MapContainer" type="BoxContainer"]
@@ -16,6 +17,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
+script = ExtResource("1_481kj")
 
 [node name="SubViewport" type="SubViewport" parent="Window"]
 transparent_bg = true
