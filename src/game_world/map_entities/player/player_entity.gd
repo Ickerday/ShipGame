@@ -1,12 +1,16 @@
-extends Node2D
+extends CharacterBody2D
 
-class_name Wreck
+class_name PlayerEntity
 
-@onready var inventory := $InventoryComponent
+@onready var movement_component := $MovementComponent
 
 ###############################################################################
 # Builtin functions                                                           #
 ###############################################################################
+
+func _ready():
+	InputMediator.register_player(self)
+	connect_player_ship_to_event_bus()
 
 ###############################################################################
 # Public functions                                                            #
@@ -16,17 +20,11 @@ class_name Wreck
 # Connections                                                                 #
 ###############################################################################
 
+func connect_player_ship_to_event_bus():
+	PlayerEventBus.target_destination_changed.connect(movement_component._on_target_speed_changed)
+	PlayerEventBus.target_rotation_changed.connect(movement_component._on_target_rotation_changed)
+	PlayerEventBus.target_speed_changed.connect(movement_component._on_target_speed_changed)
 
-func _on_pillage_area_area_entered(_area):
-	InputMediator.pillage_inventory_started.emit(inventory)
-
-
-func _on_pillage_area_area_exited(_area):
-	InputMediator.pillage_inventory_stopped.emit()
-
-
-func _on_time_to_pillage_timeout():
-	queue_free()
 
 ###############################################################################
 # Private functions                                                           #

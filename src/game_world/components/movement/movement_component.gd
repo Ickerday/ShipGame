@@ -83,7 +83,6 @@ func _on_target_destination_changed(_new_destination: Vector2) -> void:
 
 func _ready():
 	parent = get_parent()
-	InputMediator.target_destination_changed.connect(set_target_destination)
 
 
 func _physics_process(delta):

@@ -1,5 +1,8 @@
 extends SubViewportContainer
 
+# A class responsible for passing the inputs into the gameworld
+
+
 @onready var viewport: SubViewport = $SubViewport
 @onready var camera: Camera2D = $SubViewport/Camera2D
 
@@ -15,16 +18,15 @@ var requested_camera_movement = Vector2.ZERO
 @export var max_camera_change: float = 250.0
 
 var player_ref: WeakRef
-var camera_tracks_player: bool = false:
-	set = set_camera_tracks_player
+var camera_tracks_player: bool = false
 
 ###############################################################################
 # Setters                                                                     #
 ###############################################################################
 
 
-func set_camera_tracks_player(new_camera_tracks_player: bool):
-	camera_tracks_player = not new_camera_tracks_player
+func set_camera_tracks_player():
+	camera_tracks_player = not camera_tracks_player
 
 
 ###############################################################################
@@ -34,16 +36,11 @@ func set_camera_tracks_player(new_camera_tracks_player: bool):
 
 func _ready():
 	await get_tree().process_frame
-	#	viewport.world_2d = InputMediator.world2D
 	player_ref = InputMediator.player
-	#	viewport.handle_input_locally = true
 	InputMediator.camera_tracks_player_changed.connect(set_camera_tracks_player)
 
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_space"):
-		set_camera_tracks_player(not camera_tracks_player)
-
 	if camera_tracks_player:
 		_track_player()
 
