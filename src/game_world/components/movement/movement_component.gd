@@ -36,7 +36,7 @@ var target_rotation: float = 0:
 
 
 func set_target_rotation(new_rotation: float):
-	target_rotation = max(min(new_rotation, max_rotation), -max_rotation)
+	target_rotation = clampf(new_rotation, -max_rotation, max_rotation)
 	target_rotation_changed.emit(target_rotation)
 
 
@@ -47,6 +47,7 @@ var target_destination: Vector2 = Vector2.ZERO:
 func set_target_destination(new_location: Vector2):
 	print(["set_target_destination", new_location])
 	target_destination = new_location
+	target_destination_changed.emit(target_destination)
 
 
 ###############################################################################
@@ -73,8 +74,7 @@ func _on_target_rotation_changed(new_rotation: float, hard_set: bool = false):
 
 
 func _on_target_destination_changed(_new_destination: Vector2) -> void:
-	# set_target_rotation(0) # calculate the angle from current X/Y to target X/Y
-	var _new_rotation = transform.get_origin()
+	var new_rotation = parent.get_angle_to(_new_destination)
 
 
 ###############################################################################
@@ -93,14 +93,16 @@ func _physics_process(delta):
 		parent.set_velocity(_calculate_new_velocity(delta))
 		parent.rotation += target_rotation * rotation_speed * delta
 		parent.move_and_slide()
+
 		body_moved.emit(parent.velocity)
 	else:
 		# ! TODO: Move towards target_destination
-		# velocity  position.direction_to(target) * speed
-		# look_at(target)
-		# if position.distance_to(target) > 10:
-		#     move_and_slide()
-		pass
+		parent.set_velocity(_calculate_new_velocity(delta))
+		parent.rotation += target_rotation * rotation_speed * delta
+		if position.distance_to(target_destination) > 10:
+			parent.move_and_slide()
+
+		body_moved.emit(parent.velocity)
 
 
 ###############################################################################

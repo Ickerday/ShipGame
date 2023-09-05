@@ -19,6 +19,7 @@ config/icon="res://assets/svg/zeppelin.svg"
 [autoload]
 
 InputMediator="*res://src/game_world/managers/input_mediator.tscn"
+PlayerEventBus="*res://src/game_world/managers/player_event_bus.gd"
 
 [display]
 
