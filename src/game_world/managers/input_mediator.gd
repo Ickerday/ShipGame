@@ -5,8 +5,7 @@ extends Node
 class_name GameInputMediator
 
 ###############################################################################
-# References                                                                  #
-###############################################################################
+# References
 
 var game_world: Node2D
 var world2D: World2D
@@ -17,8 +16,7 @@ enum InterfaceState { FreeLook, MissileLaunch, UseRuler, UsePen }
 var current_interface_state := InterfaceState.FreeLook
 
 ###############################################################################
-# Signals                                                                     #
-###############################################################################
+# Signals
 
 signal interface_state_change_requested(new_state: InterfaceState)
 signal interface_state_changed(new_state: InterfaceState)
@@ -35,8 +33,7 @@ signal pillage_inventory_started(inventory: InventoryComponent)
 signal pillage_inventory_stopped
 
 ###############################################################################
-# Builtin functions                                                           #
-###############################################################################
+# Builtin functions
 
 
 func _physics_process(_delta):
@@ -44,8 +41,7 @@ func _physics_process(_delta):
 
 
 ###############################################################################
-# Public functions                                                            #
-###############################################################################
+# Public functions
 
 
 func request_interface_state_change(new_state: InterfaceState):
@@ -70,12 +66,10 @@ func register_player(new_player: CharacterBody2D):
 
 
 ###############################################################################
-# Connections                                                                 #
-###############################################################################
+# Connections
 
 ###############################################################################
-# Private functions                                                           #
-###############################################################################
+# Private functions
 
 
 func _check_for_actions():
@@ -83,21 +77,12 @@ func _check_for_actions():
 		camera_tracks_player_changed.emit()
 
 	var target_speed_change: float = (
-		0.5
-		* (
-			int(Input.is_action_just_pressed("move_up"))
-			- int(Input.is_action_just_pressed("move_down"))
-		)
-	)
+		0.5 * (int(Input.is_action_just_pressed("move_up")) - int(Input.is_action_just_pressed("move_down"))))
 	if !is_zero_approx(target_speed_change):
 		target_speed_changed.emit(target_speed_change, false)
 
 	var target_rotation_change: float = (
-		0.1
-		* (
-			int(Input.is_action_just_pressed("turn_right"))
-			- int(Input.is_action_just_pressed("turn_left"))
-		)
+		0.1 * (int(Input.is_action_just_pressed("turn_right")) - int(Input.is_action_just_pressed("turn_left")))
 	)
 	if !is_zero_approx(target_rotation_change):
 		target_rotation_changed.emit(target_rotation_change, false)

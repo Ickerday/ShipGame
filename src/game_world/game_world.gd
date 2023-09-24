@@ -6,8 +6,7 @@ var missile_scene := preload("res://src/game_world/map_entities/missile/missile_
 var wreck_scene := preload("res://src/game_world/map_entities/wreck/wreck_entity.tscn")
 
 ###############################################################################
-# Builtin functions                                                           #
-###############################################################################
+# Builtin functions
 
 
 func _ready():
@@ -15,13 +14,10 @@ func _ready():
 
 
 ###############################################################################
-# Public functions                                                            #
-###############################################################################
+# Public functions
 
 
-func create_new_missile(
-	missile_data: InventoryItem, launcher: CharacterBody2D, launch_target: Vector2
-):
+func create_new_missile(missile_data: InventoryItem, launcher: CharacterBody2D, launch_target: Vector2):
 	var new_missile = missile_scene.instantiate()
 	new_missile.add_collision_exception_with(launcher)
 	new_missile.global_position = launcher.global_position
@@ -44,8 +40,7 @@ func create_new_wreck_from_entity(entity: CharacterBody2D):
 
 
 ###############################################################################
-# Connections                                                                 #
-###############################################################################
+# Connections
 
 
 func _on_entity_killed(entity: Variant):
@@ -53,5 +48,4 @@ func _on_entity_killed(entity: Variant):
 		create_new_wreck_from_entity(entity as CharacterBody2D)
 
 ###############################################################################
-# Private functions                                                           #
-###############################################################################
+# Private functions

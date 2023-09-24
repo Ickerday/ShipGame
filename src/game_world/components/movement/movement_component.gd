@@ -45,7 +45,6 @@ var target_destination: Vector2 = Vector2.ZERO:
 
 
 func set_target_destination(new_location: Vector2):
-	print(["set_target_destination", new_location])
 	target_destination = new_location
 	target_destination_changed.emit(target_destination)
 
@@ -73,9 +72,8 @@ func _on_target_rotation_changed(new_rotation: float, hard_set: bool = false):
 		self.target_rotation += new_rotation
 
 
-func _on_target_destination_changed(_new_destination: Vector2) -> void:
-	var new_rotation = parent.get_angle_to(_new_destination)
-
+func _on_target_destination_changed(new_destination: Vector2) -> void:
+	set_target_destination(new_destination)
 
 ###############################################################################
 # Built-in functions

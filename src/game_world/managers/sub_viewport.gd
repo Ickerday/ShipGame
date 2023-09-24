@@ -21,8 +21,7 @@ var player_ref: WeakRef
 var camera_tracks_player: bool = false
 
 ###############################################################################
-# Setters                                                                     #
-###############################################################################
+# Setters
 
 
 func set_camera_tracks_player():
@@ -30,8 +29,7 @@ func set_camera_tracks_player():
 
 
 ###############################################################################
-# Builtin functions                                                           #
-###############################################################################
+# Builtin functions
 
 
 func _ready():
@@ -60,7 +58,7 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	# Handle manual camera movement
+	## Handle manual camera movement
 	if (
 		event is InputEventMouseMotion
 		and event.button_mask == MOUSE_BUTTON_MASK_RIGHT
@@ -72,11 +70,12 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton:
-		# Handle "go here"
+		## Handle "go here"
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
-			InputMediator.target_destination_changed.emit(get_global_mouse_position())
+			var mouse_pos = get_global_mouse_position()
+			InputMediator.target_destination_changed.emit(mouse_pos)
 
-		# Handle camera zoom
+		## Handle camera zoom
 		# Zoom in
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			requested_camera_zoom = max(requested_camera_zoom - camera_zoom_increment, min_zoom)
@@ -91,16 +90,13 @@ func _unhandled_input(event):
 
 
 ###############################################################################
-# Public functions                                                            #
-###############################################################################
+# Public functions
 
 ###############################################################################
-# Connections                                                                 #
-###############################################################################
+# Connections
 
 ###############################################################################
-# Private functions                                                           #
-###############################################################################
+# Private functions
 
 
 func _track_player():
